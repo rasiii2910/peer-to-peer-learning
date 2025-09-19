@@ -19,7 +19,8 @@ export default function FloatingSquares() {
               width: `${size}px`,
               height: `${size}px`,
               left: `${left}%`,
-              bottom: `-${size}px`,
+              bottom: `0px`,
+              transform: `translateY(0)`,
               animationDelay: `${delay}s`,
               animationDuration: `${duration}s`,
             }}
