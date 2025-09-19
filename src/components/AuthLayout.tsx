@@ -40,7 +40,9 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* Right: purple welcome panel with diagonal cut */}
-              <div className="hidden md:block relative">
+              // AuthLayout.jsx
+              {/* Right: purple welcome panel with diagonal cut */}
+              <div className="hidden md:block relative overflow-hidden">
                 <div
                   className="absolute inset-0"
                   style={{
@@ -51,19 +53,17 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 {/* floating squares behind the text */}
                 <FloatingSquares />
 
-                {/* diagonal overlay */}
+                {/* diagonal overlay - moved to be above the squares */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 z-10"
                   style={{
-                    clipPath:
-                      'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
-                    background:
-                      'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                    clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
                   }}
                 />
 
                 {/* text content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
+                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
                   <h2 className="brand-title text-4xl md:text-5xl">
                     GES LearnNet
                   </h2>
