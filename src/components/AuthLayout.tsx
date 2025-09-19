@@ -40,7 +40,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* Right: purple welcome panel with diagonal cut */}
-              // AuthLayout.jsx
+              
               {/* Right: purple welcome panel with diagonal cut */}
               <div className="hidden md:block relative overflow-hidden">
                 <div
