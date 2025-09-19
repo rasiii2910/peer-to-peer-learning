@@ -34,18 +34,28 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
 
               {/* Right: purple welcome panel with diagonal cut */}
               <div className="hidden md:block relative">
-                <div className="h-full w-full" style={{ background: 'linear-gradient(135deg,#4c1d95,#9f7aea)' }} />
-                {/* floating squares behind text */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,#4c1d95,#9f7aea)' }} />
+
+                {/* floating squares behind the text */}
                 <FloatingSquares />
 
-                {/* diagonal overlay to create the cut effect */}
-                <div className="absolute inset-0" style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)', background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))' }} />
+                {/* diagonal overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                  }}
+                />
+
+                {/* text content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
                   <h2 className="brand-title text-4xl md:text-5xl">GES LearnNet</h2>
-                  <p className="brand-tagline mt-3 max-w-xs text-sm">Your Skills, Their Growth—A Community of Learners, by Learners</p>
+                  <p className="brand-tagline mt-3 max-w-xs text-sm">
+                    Your Skills, Their Growth—A Community of Learners, by Learners
+                  </p>
                 </div>
               </div>
-            </div>
 
             {/* Neon inner border glow */}
             <div className="pointer-events-none absolute inset-0 rounded-lg" style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }} />
