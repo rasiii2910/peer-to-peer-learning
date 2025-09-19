@@ -7,42 +7,57 @@ export default function SignIn() {
 
   return (
     <div className={`transition-all duration-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
-      <h2 className="text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">Sign in</h2>
-      <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">Welcome back! Please enter your details.</p>
+      <h2 className="text-3xl font-extrabold text-white">Login</h2>
+      <p className="mt-2 text-sm text-purple-200/80">Please enter your username and password to sign in.</p>
 
-      <form className="mt-6 space-y-4">
+      <form className="mt-6 space-y-6" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">Email</label>
-          <input
-            id="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="mt-1 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-neutral-900 placeholder-neutral-400 shadow-sm outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-            placeholder="you@example.com"
-          />
+          <label htmlFor="email" className="block text-sm font-medium text-purple-200/90">Username</label>
+          <div className="relative mt-2">
+            <input
+              id="email"
+              type="text"
+              autoComplete="username"
+              required
+              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
+              placeholder="your.username"
+            />
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-2 text-purple-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+          </div>
         </div>
+
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium text-neutral-700 dark:text-neutral-200">Password</label>
-            <Link to="/forgot-password" className="text-sm font-medium text-purple-600 hover:text-purple-700">Forgot?</Link>
+            <label htmlFor="password" className="block text-sm font-medium text-purple-200/90">Password</label>
+            <Link to="/forgot-password" className="text-sm font-medium text-purple-200/90 hover:underline">Forgot?</Link>
           </div>
-          <input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            className="mt-1 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-neutral-900 placeholder-neutral-400 shadow-sm outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white"
-            placeholder="••••••••"
-          />
+          <div className="relative mt-2">
+            <input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
+              placeholder="••••••••"
+            />
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-2 text-purple-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 10-8 0v4" />
+                <rect x="4" y="11" width="16" height="10" rx="2" />
+              </svg>
+            </div>
+          </div>
         </div>
-        <button type="submit" className="mt-2 w-full rounded-lg bg-purple-600 px-4 py-2.5 font-semibold text-white shadow-lg shadow-purple-600/30 transition hover:bg-purple-700 active:scale-[0.99]">Sign in</button>
+
+        <button type="submit" className="w-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 py-2.5 text-white font-semibold shadow-lg shadow-purple-600/30 hover:scale-[0.995] transition">Login</button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-neutral-600 dark:text-neutral-300">
-        Don&apos;t have an account?{' '}
-        <Link to="/signup" className="font-semibold text-purple-600 hover:text-purple-700">Sign up</Link>
-      </p>
+      <p className="mt-6 text-center text-sm text-purple-200/80">Don&apos;t have an account? <Link to="/signup" className="text-purple-300 font-semibold hover:underline">Sign Up</Link></p>
     </div>
   );
 }
