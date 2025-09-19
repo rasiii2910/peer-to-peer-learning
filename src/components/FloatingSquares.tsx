@@ -14,7 +14,7 @@ export default function FloatingSquares() {
         return (
           <div
             key={i}
-            className="absolute bg-purple-300/30 rounded-sm animate-float"
+            className="absolute bg-purple-300/30 rounded-sm animate-float will-change-transform"
             style={{
               width: `${size}px`,
               height: `${size}px`,
