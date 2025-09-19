@@ -19,7 +19,7 @@ export default function SignIn() {
               type="text"
               autoComplete="username"
               required
-              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
+              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
               placeholder="your.username"
             />
             <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-2 text-purple-300">
@@ -42,7 +42,7 @@ export default function SignIn() {
               type="password"
               autoComplete="current-password"
               required
-              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
+              className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
               placeholder="••••••••"
             />
             <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-2 text-purple-300">
@@ -57,7 +57,7 @@ export default function SignIn() {
         <button type="submit" className="w-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 py-2.5 text-white font-semibold shadow-lg shadow-purple-600/30 hover:scale-[0.995] transition">Login</button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-purple-200/80">Don&apos;t have an account? <Link to="/signup" className="text-purple-300 font-semibold hover:underline">Sign Up</Link></p>
+      <p className="mt-6 text-center text-sm text-purple-700 dark:text-purple-200">Don&apos;t have an account? <Link to="/signup" className="text-purple-300 font-semibold hover:underline">Sign Up</Link></p>
     </div>
   );
 }
