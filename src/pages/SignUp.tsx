@@ -17,17 +17,17 @@ export default function SignUp() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-purple-200/90">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium text-purple-700 dark:text-purple-200">Email</label>
           <input id="email" type="email" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-purple-200/90">Password</label>
+          <label htmlFor="password" className="block text-sm font-medium text-purple-700 dark:text-purple-200">Password</label>
           <input id="password" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
         <div>
-          <label htmlFor="confirm" className="block text-sm font-medium text-purple-200/90">Confirm password</label>
+          <label htmlFor="confirm" className="block text-sm font-medium text-purple-700 dark:text-purple-200">Confirm password</label>
           <input id="confirm" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
