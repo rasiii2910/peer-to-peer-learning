@@ -27,8 +27,9 @@ export default function SignUp() {
 
       {/* Signup Form */}
       <div
-        className={`relative z-10 p-8 rounded-xl bg-purple-800/40 backdrop-blur-lg shadow-xl w-full max-w-md transition-all duration-500 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-          }`}
+        className={`relative z-10 p-8 rounded-xl bg-purple-800/40 backdrop-blur-lg shadow-xl w-full max-w-md transition-all duration-500 ${
+          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        }`}
       >
         <h2 className="text-3xl font-extrabold text-white">Create account</h2>
         <p className="mt-2 text-sm text-purple-200/80">
