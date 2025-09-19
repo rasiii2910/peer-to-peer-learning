@@ -3,7 +3,7 @@ export default function FloatingSquares() {
   const squares = Array.from({ length: 12 });
 
   return (
-    <div className="w-full h-full overflow-hidden pointer-events-none relative">
+    <div className="w-full h-full pointer-events-none relative">
       {squares.map((_, i) => {
         const size = Math.floor(Math.random() * 40) + 20; // 20–60px
         const left = Math.random() * 100;
