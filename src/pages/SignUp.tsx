@@ -13,22 +13,22 @@ export default function SignUp() {
       <form className="mt-6 space-y-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-purple-200/90">Name</label>
-          <input id="name" type="text" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300" placeholder="Jane Doe" />
+          <input id="name" type="text" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300" />
         </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-purple-200/90">Email</label>
-          <input id="email" type="email" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300" placeholder="you@example.com" />
+          <input id="email" type="email" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-purple-200/90">Password</label>
-          <input id="password" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300" placeholder="••••••••" />
+          <input id="password" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
         <div>
           <label htmlFor="confirm" className="block text-sm font-medium text-purple-200/90">Confirm password</label>
-          <input id="confirm" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300" placeholder="••••••••" />
+          <input id="confirm" type="password" required className="mt-2 w-full border-b border-purple-400/40 bg-transparent py-2 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"  />
         </div>
 
         <button type="submit" className="w-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 py-2.5 text-white font-semibold shadow-lg shadow-purple-600/30 hover:scale-[0.995] transition">Sign up</button>
