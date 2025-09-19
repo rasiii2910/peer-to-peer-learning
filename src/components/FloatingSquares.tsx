@@ -3,12 +3,12 @@ export default function FloatingSquares() {
   const squares = Array.from({ length: 12 });
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="w-full h-full overflow-hidden pointer-events-none relative">
       {squares.map((_, i) => {
-        const size = Math.floor(Math.random() * 40) + 20; // 20px–60px
-        const left = Math.random() * 100; // %
-        const delay = Math.random() * 5; // s
-        const duration = Math.random() * 10 + 10; // 10s–20s
+        const size = Math.floor(Math.random() * 40) + 20; // 20–60px
+        const left = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 10 + 10;
 
         return (
           <div
@@ -18,7 +18,7 @@ export default function FloatingSquares() {
               width: `${size}px`,
               height: `${size}px`,
               left: `${left}%`,
-              top: `100%`, // Start at the bottom of the container
+              bottom: `-60px`, // start below view
               animationDelay: `${delay}s`,
               animationDuration: `${duration}s`,
             }}
