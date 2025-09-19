@@ -13,7 +13,7 @@ export default {
         },
       },
       animation: {
-        float: "float linear infinite",
+        float: "float 20s linear infinite",
       },
     },
   },
