@@ -1,5 +1,4 @@
-import React from 'react';
-
+// FloatingSquares.jsx
 export default function FloatingSquares() {
   const squares = Array.from({ length: 12 });
 
@@ -19,7 +18,7 @@ export default function FloatingSquares() {
               width: `${size}px`,
               height: `${size}px`,
               left: `${left}%`,
-              bottom: `-60px`, // start below view
+              top: `100%`, // Start at the bottom of the container
               animationDelay: `${delay}s`,
               animationDuration: `${duration}s`,
             }}
