@@ -22,19 +22,31 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
 
       <div className="relative w-full max-w-4xl">
         {/* Gradient border */}
-        <div className="rounded-xl p-[2px]" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
-          <div className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white" style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}>
+        <div
+          className="rounded-xl p-[2px]"
+          style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}
+        >
+          <div
+            className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
+            style={{
+              boxShadow:
+                '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)',
+            }}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Left: form area */}
               <div className="p-8 md:p-10 lg:p-12">
-                <div className="max-w-md">
-                  {children}
-                </div>
+                <div className="max-w-md">{children}</div>
               </div>
 
               {/* Right: purple welcome panel with diagonal cut */}
               <div className="hidden md:block relative">
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,#4c1d95,#9f7aea)' }} />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(135deg,#4c1d95,#9f7aea)',
+                  }}
+                />
 
                 {/* floating squares behind the text */}
                 <FloatingSquares />
@@ -43,22 +55,31 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 <div
                   className="absolute inset-0"
                   style={{
-                    clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
+                    clipPath:
+                      'polygon(10% 0, 100% 0, 100% 100%, 0 100%)',
+                    background:
+                      'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))',
                   }}
                 />
 
                 {/* text content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
-                  <h2 className="brand-title text-4xl md:text-5xl">GES LearnNet</h2>
+                  <h2 className="brand-title text-4xl md:text-5xl">
+                    GES LearnNet
+                  </h2>
                   <p className="brand-tagline mt-3 max-w-xs text-sm">
-                    Your Skills, Their Growth—A Community of Learners, by Learners
+                    Your Skills, Their Growth—A Community of Learners, by
+                    Learners
                   </p>
                 </div>
               </div>
+            </div>
 
             {/* Neon inner border glow */}
-            <div className="pointer-events-none absolute inset-0 rounded-lg" style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }} />
+            <div
+              className="pointer-events-none absolute inset-0 rounded-lg"
+              style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }}
+            />
           </div>
         </div>
       </div>
