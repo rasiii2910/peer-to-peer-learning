@@ -7,7 +7,7 @@ export default function SignUp() {
 
   return (
     <div className={`transition-all duration-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
-      <h2 className="text-3xl font-extrabold text-neutral-900 dark:text-white">Create account</h2>
+      <h2 className="text-3xl font-extrabold text-purple-800 dark:text-purple-200">Create account</h2>
       <p className="mt-2 text-sm text-purple-700 dark:text-purple-200">Join us and get started in seconds.</p>
 
       <form className="mt-6 space-y-6" onSubmit={(e) => e.preventDefault()}>
