@@ -34,7 +34,7 @@ export default function SignUp() {
         <button type="submit" className="w-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 py-2.5 text-white font-semibold shadow-lg shadow-purple-600/30 hover:scale-[0.995] transition">Sign up</button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-purple-200/80">Already have an account? <Link to="/signin" className="text-purple-300 font-semibold hover:underline">Sign in</Link></p>
+      <p className="mt-6 text-center text-sm text-purple-700 dark:text-purple-200">Already have an account? <Link to="/signin" className="text-purple-600 font-semibold hover:underline">Sign in</Link></p>
     </div>
   );
 }
