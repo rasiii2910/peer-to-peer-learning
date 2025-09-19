@@ -41,8 +41,8 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 {/* diagonal overlay to create the cut effect */}
                 <div className="absolute inset-0" style={{ clipPath: 'polygon(10% 0, 100% 0, 100% 100%, 0 100%)', background: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))' }} />
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
-                  <h2 className="text-3xl font-extrabold tracking-tight">WELCOME BACK!</h2>
-                  <p className="mt-3 max-w-xs text-sm opacity-90">Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+                  <h2 className="brand-title text-4xl md:text-5xl">GES LearnNet</h2>
+                  <p className="brand-tagline mt-3 max-w-xs text-sm">Your Skills, Their Growth—A Community of Learners, by Learners</p>
                 </div>
               </div>
             </div>
