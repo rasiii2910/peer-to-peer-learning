@@ -42,7 +42,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
               {/* Right: purple welcome panel with diagonal cut */}
               
               {/* Right: purple welcome panel with diagonal cut */}
-              <div className="hidden md:block relative overflow-hidden">
+              <div className="hidden md:block relative">
                 <div
                   className="absolute inset-0"
                   style={{
@@ -51,7 +51,9 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 />
 
                 {/* floating squares behind the text */}
-                <FloatingSquares />
+                <div className="absolute inset-0 overflow-hidden">
+                  <FloatingSquares />
+                </div>
 
                 {/* diagonal overlay - moved to be above the squares */}
                 <div
