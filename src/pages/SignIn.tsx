@@ -21,7 +21,7 @@ export default function SignIn() {
               autoComplete="username"
               required
               className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
-              placeholder="your.username or email"
+              
             />
             <div className="absolute right-0 top-1/2 -translate-y-1/2 pr-2 text-purple-500">
               {/* email icon */}
@@ -44,7 +44,7 @@ export default function SignIn() {
               autoComplete="current-password"
               required
               className="w-full border-b border-purple-400/40 bg-transparent py-2 pr-10 text-neutral-900 dark:text-white placeholder-purple-300 focus:outline-none focus:border-purple-300"
-              placeholder="••••••••"
+              
             />
 
             <button
