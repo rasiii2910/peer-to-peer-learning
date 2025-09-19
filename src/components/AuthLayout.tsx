@@ -39,7 +39,7 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 <div className="max-w-md">{children}</div>
               </div>
 
-              {/* Right: purple welcome panel with diagonal cut */}
+              
               
               {/* Right: purple welcome panel with diagonal cut */}
               <div className="hidden md:block relative">
