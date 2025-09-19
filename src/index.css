@@ -66,35 +66,4 @@
 .animate-float { animation: float 8s ease-in-out infinite; }
 .animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
 
-/* White base text + shimmering gradient overlay */
-.shimmer-text {
-  position: relative;
-  display: inline-block;
-  color: white;
-  overflow: hidden;
-}
 
-.shimmer-text::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(168, 85, 247, 0.7),
-      rgba(217, 70, 239, 0.7),
-      transparent);
-  animation: shimmerMove 3s infinite linear;
-}
-
-@keyframes shimmerMove {
-  0% {
-    left: -100%;
-  }
-
-  100% {
-    left: 100%;
-  }
-}
