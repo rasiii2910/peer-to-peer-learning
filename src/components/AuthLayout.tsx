@@ -63,15 +63,18 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
                 />
 
                 {/* text content */}
-                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-neutral-900 dark:text-white">
-                  <h2 className="brand-title text-4xl md:text-5xl">
+                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8 text-center">
+                  <h2 className="brand-title text-4xl md:text-5xl font-extrabold text-white relative shimmer-text">
                     GES LearnNet
                   </h2>
-                  <p className="brand-tagline mt-3 max-w-xs text-sm">
-                    Your Skills, Their Growth—A Community of Learners, by
-                    Learners
+                  <p className="brand-tagline mt-5 max-w-xs text-base leading-relaxed text-white">
+                    <span className="block sparkle">Your Skills, Their Growth</span>
+                    <span className="block mt-2 sparkle text-sm opacity-90">
+                      A community of learners, by learners
+                    </span>
                   </p>
                 </div>
+
               </div>
             </div>
 
