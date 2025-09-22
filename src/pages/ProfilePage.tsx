@@ -82,15 +82,10 @@ export default function ProfilePage() {
           className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
           style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-4">
-            {/* Sidebar */}
-            <div className="hidden md:block md:col-span-1 bg-gradient-to-b from-purple-700/60 to-indigo-700/40 relative p-6">
-              <FloatingSquares />
-              <Sidebar />
-            </div>
+          <div>
+            {/* Sidebar is fixed on larger screens; main content scrolls inside this area */}
 
-            {/* Main content */}
-            <main className="col-span-1 md:col-span-3 p-6 md:p-10">
+            <main className="p-6 md:p-10 md:ml-80 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex items-center gap-6">
                   <div className="relative">
