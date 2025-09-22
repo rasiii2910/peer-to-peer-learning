@@ -96,11 +96,11 @@ export default function Sidebar() {
                 title="Toggle Theme"
               >
                 {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="white" className="h-5 w-5 stroke-[0.5] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="black" className="h-5 w-5 stroke-[0.5] text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 3v2m0 14v2m8.66-9h-2M5.34 12H3m13.07 6.07l-1.41-1.41M7.05 7.05 5.64 5.64m12.02 0l-1.41 1.41M7.05 16.95 5.64 18.36M12 7a5 5 0 100 10 5 5 0 000-10z" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="white" className="h-5 w-5 stroke-[0.5] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="black" className="h-5 w-5 stroke-[0.5] text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
                   </svg>
                 )}
