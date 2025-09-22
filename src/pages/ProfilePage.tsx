@@ -76,17 +76,19 @@ export default function ProfilePage() {
     <div className="min-h-screen w-full flex items-start justify-center p-6 relative">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-purple-950 to-black opacity-90" />
 
-      <Sidebar />
-
       <div className="relative w-full max-w-6xl rounded-xl p-[2px] mx-auto" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
         <div
           className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
           style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}
         >
-          <div>
-            {/* Sidebar is fixed on larger screens; main content scrolls inside this area */}
+          <div className="grid grid-cols-1 md:grid-cols-4">
+            {/* Sidebar */}
+            <div className="hidden md:block md:col-span-1 bg-gradient-to-b from-purple-700/60 to-indigo-700/40 relative p-6 rounded-l-lg overflow-hidden">
+              <Sidebar />
+            </div>
 
-            <main className="p-6 md:p-10 md:ml-80 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
+            {/* Main content */}
+            <main className="col-span-1 md:col-span-3 p-6 md:p-10 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex items-center gap-6">
                   <div className="relative">
