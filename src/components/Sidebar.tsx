@@ -28,8 +28,9 @@ export default function Sidebar() {
     <aside className="md:col-span-1 relative p-6 overflow-hidden rounded-lg">
       {/* background & floating squares */}
       <div className="absolute inset-0 -z-10 rounded-lg" style={{ background: 'linear-gradient(180deg, rgba(76,29,149,0.6), rgba(79,70,229,0.35))' }} />
+      <FloatingSquares />
       <div className="absolute inset-0 -z-20">
-        <FloatingSquares />
+        
       </div>
 
       <div className="relative z-20 flex flex-col h-full">
