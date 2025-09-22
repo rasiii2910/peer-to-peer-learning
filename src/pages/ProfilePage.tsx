@@ -1,0 +1,264 @@
+import React, { useMemo, useState } from 'react';
+import Sidebar from '../components/Sidebar';
+import FloatingSquares from '../components/FloatingSquares';
+import { useTheme } from '../theme/ThemeProvider';
+
+type Skill = { id: string; name: string; level: 'Beginner' | 'Intermediate' | 'Advanced' };
+type Feedback = { id: string; mentor: string; rating: number; text: string; date: string };
+
+function Stars({ value }: { value: number }) {
+  const stars = Array.from({ length: 5 }).map((_, i) => i < value);
+  return (
+    <div className="flex gap-1 text-yellow-400">
+      {stars.map((on, i) => (
+        <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={`h-4 w-4 ${on ? 'opacity-100' : 'opacity-30'}`}>
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.97a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.97c.3.922-.755 1.688-1.54 1.118L10 13.347l-3.38 2.455c-.784.57-1.839-.196-1.54-1.118l1.287-3.97a1 1 0 00-.364-1.118L2.623 9.397c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.97z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+export default function ProfilePage() {
+  const { theme } = useTheme();
+  const [avatar, setAvatar] = useState<string | null>(null);
+  const [editingInfo, setEditingInfo] = useState(false);
+  const [name, setName] = useState('Rasika Thakur');
+  const [yearBranch, setYearBranch] = useState('3rd Year – Computer Science');
+  const [email, setEmail] = useState('rasika@example.com');
+  const [phone, setPhone] = useState('');
+
+  const [bio, setBio] = useState(
+    'I am passionate about Java, Python, and Web Development. I enjoy mentoring juniors and learning collaboratively.'
+  );
+  const [editingBio, setEditingBio] = useState(false);
+
+  const [skills, setSkills] = useState<Skill[]>([
+    { id: 's1', name: 'Java', level: 'Advanced' },
+    { id: 's2', name: 'React', level: 'Intermediate' },
+    { id: 's3', name: 'Python', level: 'Advanced' },
+  ]);
+  const [showAddSkill, setShowAddSkill] = useState(false);
+  const [newSkillName, setNewSkillName] = useState('');
+  const [newSkillLevel, setNewSkillLevel] = useState<Skill['level']>('Beginner');
+
+  const [feedback, setFeedback] = useState<Feedback[]>([
+    { id: 'f1', mentor: 'Prof. Mehta', rating: 5, text: 'Great mentorship and commitment.', date: '2025-08-01' },
+    { id: 'f2', mentor: 'Dr. Singh', rating: 4, text: 'Very helpful on project architecture.', date: '2025-07-12' },
+  ]);
+  const [sort, setSort] = useState<'latest' | 'highest'>('latest');
+
+  const avgRating = useMemo(() => Math.round((feedback.reduce((s, f) => s + f.rating, 0) / Math.max(1, feedback.length)) || 0), [feedback]);
+
+  function onAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    setAvatar(URL.createObjectURL(f));
+  }
+
+  function addSkill() {
+    if (!newSkillName.trim()) return;
+    setSkills((s) => [...s, { id: String(Date.now()), name: newSkillName.trim(), level: newSkillLevel }]);
+    setNewSkillName('');
+    setNewSkillLevel('Beginner');
+    setShowAddSkill(false);
+  }
+
+  function removeSkill(id: string) {
+    setSkills((s) => s.filter((x) => x.id !== id));
+  }
+
+  function sortedFeedback() {
+    if (sort === 'latest') return [...feedback].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+    return [...feedback].sort((a, b) => b.rating - a.rating || +new Date(b.date) - +new Date(a.date));
+  }
+
+  return (
+    <div className="min-h-screen w-full flex items-start justify-center p-6 relative">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-purple-950 to-black opacity-90" />
+
+      <div className="relative w-full max-w-6xl rounded-xl p-[2px]" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
+        <div
+          className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
+          style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-4">
+            {/* Sidebar */}
+            <div className="hidden md:block md:col-span-1 bg-gradient-to-b from-purple-700/60 to-indigo-700/40 relative p-6">
+              <FloatingSquares />
+              <Sidebar />
+            </div>
+
+            {/* Main content */}
+            <main className="col-span-1 md:col-span-3 p-6 md:p-10">
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex items-center gap-6">
+                  <div className="relative">
+                    <div className="h-28 w-28 rounded-full bg-purple-200/30 overflow-hidden ring-4 ring-white/10">
+                      {avatar ? (
+                        // eslint-disable-next-line jsx-a11y/img-redundant-alt
+                        <img src={avatar} alt="avatar" className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="h-full w-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center text-white text-2xl font-bold">RT</div>
+                      )}
+                    </div>
+
+                    <label className="absolute bottom-0 right-0 -mr-1 -mb-1 bg-white/10 rounded-full p-1 hover:bg-white/20 cursor-pointer">
+                      <input type="file" accept="image/*" onChange={onAvatarChange} className="hidden" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-white">
+                        <path d="M12 2a2 2 0 00-2 2v1H8.5A2.5 2.5 0 006 7.5V9h12V7.5A2.5 2.5 0 0015.5 5H14V4a2 2 0 00-2-2zM6 11v7.5A2.5 2.5 0 008.5 21H15.5A2.5 2.5 0 0018 18.5V11H6z" />
+                      </svg>
+                    </label>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <h1 className="text-2xl md:text-3xl font-extrabold text-neutral-900 dark:text-white">{name}</h1>
+                      <button
+                        onClick={() => setEditingInfo((s) => !s)}
+                        className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md"
+                      >
+                        {editingInfo ? 'Save' : 'Edit'}
+                      </button>
+                    </div>
+
+                    {editingInfo ? (
+                      <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <input value={name} onChange={(e) => setName(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+                        <input value={yearBranch} onChange={(e) => setYearBranch(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+                      </div>
+                    ) : (
+                      <div className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
+                        <div className="font-medium">{yearBranch}</div>
+                        <div className="mt-1 text-sm text-purple-700 dark:text-purple-200">{email}{phone ? ` • ${phone}` : ''}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="hidden md:flex flex-col items-end gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="text-sm text-neutral-500">Average Rating</div>
+                    <div className="flex items-center gap-2 bg-white/5 px-3 py-2 rounded-md">
+                      <Stars value={avgRating} />
+                      <div className="text-sm font-semibold">{avgRating}.0</div>
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-neutral-400">Member since 2023</div>
+                </div>
+              </div>
+
+              {/* Bio */}
+              <section className="mt-8">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold">Bio</h2>
+                  <button onClick={() => setEditingBio((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
+                    {editingBio ? 'Save' : 'Edit'}
+                  </button>
+                </div>
+                {editingBio ? (
+                  <textarea value={bio} onChange={(e) => setBio(e.target.value)} className="mt-3 w-full min-h-[100px] rounded-md bg-transparent border border-neutral-200/5 p-3" />
+                ) : (
+                  <p className="mt-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">{bio}</p>
+                )}
+              </section>
+
+              {/* Skills */}
+              <section className="mt-8">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold">Skills</h2>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => setShowAddSkill(true)} className="text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 rounded-full">
+                      Add Skill
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {skills.map((s) => (
+                    <div key={s.id} className="p-3 rounded-lg bg-white/5 flex items-center justify-between">
+                      <div>
+                        <div className="font-semibold">{s.name}</div>
+                        <div className="text-xs text-neutral-400">{s.level}</div>
+                        <div className="mt-2 h-2 w-36 bg-white/10 rounded-full overflow-hidden">
+                          <div className={`h-full bg-purple-500`} style={{ width: s.level === 'Beginner' ? '30%' : s.level === 'Intermediate' ? '65%' : '100%' }} />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-end gap-2">
+                        <div className="flex gap-2">
+                          <button onClick={() => { const name = prompt('Edit skill name', s.name); if (name) setSkills((prev) => prev.map((x) => x.id === s.id ? { ...x, name } : x)); }} className="text-sm text-neutral-300">Edit</button>
+                          <button onClick={() => removeSkill(s.id)} className="text-sm text-rose-400">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Ratings & Feedback */}
+              <section className="mt-8">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold">Ratings & Feedback</h2>
+                  <div className="flex items-center gap-3">
+                    <select value={sort} onChange={(e) => setSort(e.target.value as any)} className="bg-transparent border border-white/5 text-sm rounded-md px-2 py-1">
+                      <option value="latest">Latest</option>
+                      <option value="highest">Highest</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-4 space-y-3">
+                  {sortedFeedback().map((f) => (
+                    <div key={f.id} className="p-4 rounded-lg bg-white/5">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <div className="font-semibold">{f.mentor}</div>
+                          <div className="text-xs text-neutral-400">{new Date(f.date).toLocaleDateString()}</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Stars value={f.rating} />
+                          <div className="text-sm font-medium">{f.rating}</div>
+                        </div>
+                      </div>
+
+                      <p className="mt-3 text-neutral-700 dark:text-neutral-300">{f.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </main>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 rounded-lg" style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }} />
+        </div>
+      </div>
+
+      {/* Add Skill Modal */}
+      {showAddSkill && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setShowAddSkill(false)} />
+          <div className="relative z-10 w-full max-w-md rounded-lg bg-white dark:bg-neutral-900 p-6">
+            <h3 className="text-lg font-bold">Add Skill</h3>
+            <div className="mt-4 grid gap-3">
+              <input value={newSkillName} onChange={(e) => setNewSkillName(e.target.value)} placeholder="Skill name" className="w-full rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+              <select value={newSkillLevel} onChange={(e) => setNewSkillLevel(e.target.value as Skill['level'])} className="w-full rounded-md bg-transparent border border-neutral-200/5 px-3 py-2">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+
+            <div className="mt-6 flex items-center justify-end gap-3">
+              <button onClick={() => setShowAddSkill(false)} className="px-3 py-2 rounded-md bg-white/5">Cancel</button>
+              <button onClick={addSkill} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">Add</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
