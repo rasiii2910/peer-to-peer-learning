@@ -81,15 +81,15 @@ function ProfilesWidget({ profiles, onAdd, onRemove }:{ profiles:{ id: string; k
       </div>
 
       {open && (
-        <div className="mt-3 p-4 rounded-md bg-white/5">
+        <div className="mt-3 p-4 rounded-md bg-neutral-100 dark:bg-neutral-800/50">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <select value={selected} onChange={(e) => setSelected(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2">
+            <select value={selected} onChange={(e) => setSelected(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2">
               {services.map((s) => (
                 <option key={s.key} value={s.key}>{s.label}</option>
               ))}
             </select>
 
-            <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://yourprofile.com/username" className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2 col-span-2 sm:col-span-2" />
+            <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://yourprofile.com/username" className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2 col-span-2 sm:col-span-2" />
 
             <div className="sm:col-span-3 flex items-center gap-3">
               <button onClick={addProfile} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">Add</button>
@@ -102,9 +102,9 @@ function ProfilesWidget({ profiles, onAdd, onRemove }:{ profiles:{ id: string; k
             {profiles.map((p) => {
               const svc = services.find((s) => s.key === p.key)!;
               return (
-                <div key={p.id} className="p-3 rounded-md bg-white/5 flex items-center justify-between">
+                <div key={p.id} className="p-3 rounded-md bg-neutral-100 dark:bg-neutral-800/50 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="bg-white/5 p-2 rounded">{svc.icon}</div>
+                    <div className="bg-neutral-200 dark:bg-white/5 p-2 rounded">{svc.icon}</div>
                     <div className="min-w-0">
                       <div className="font-semibold text-white text-sm truncate">{svc.label}</div>
                       <a className="text-xs text-purple-200 truncate block max-w-xs" href={p.url} target="_blank" rel="noreferrer">{p.url}</a>
@@ -127,7 +127,7 @@ function ProfilesWidget({ profiles, onAdd, onRemove }:{ profiles:{ id: string; k
         {profiles.map((p) => {
           const svc = services.find((s) => s.key === p.key)!;
           return (
-            <a key={`card-${p.id}`} href={p.url} target="_blank" rel="noreferrer" className="group block p-3 rounded-lg bg-white/5 hover:bg-white/8 transition">
+            <a key={`card-${p.id}`} href={p.url} target="_blank" rel="noreferrer" className="group block p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800/50 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition">
               <div className="flex items-start gap-3">
                 <div className="p-2 rounded bg-white/5">{svc.icon}</div>
                 <div className="min-w-0">
@@ -214,7 +214,7 @@ export default function ProfilePage() {
 
       <div className="relative w-full max-w-6xl rounded-xl p-[2px] mx-auto" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
         <div
-          className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
+          className="relative overflow-hidden rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
           style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}
         >
           <div className="grid grid-cols-1 md:grid-cols-4">
@@ -258,10 +258,10 @@ export default function ProfilePage() {
 
                     {editingInfo ? (
                       <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <input value={name} onChange={(e) => setName(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
-                        <input value={yearBranch} onChange={(e) => setYearBranch(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
-                        <input value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
-                        <input value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
+                        <input value={name} onChange={(e) => setName(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2" />
+                        <input value={yearBranch} onChange={(e) => setYearBranch(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2" />
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2" />
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2" />
                       </div>
                     ) : (
                       <div className="mt-2 text-sm text-neutral-700 dark:text-neutral-300">
@@ -316,7 +316,7 @@ export default function ProfilePage() {
 
                 <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {skills.map((s) => (
-                    <div key={s.id} className="p-3 rounded-lg bg-white/5 flex items-center justify-between">
+                    <div key={s.id} className="p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800/50 flex items-center justify-between">
                       <div>
                         <div className="font-semibold">{s.name}</div>
                         <div className="text-xs text-neutral-400">{s.level}</div>
@@ -341,7 +341,7 @@ export default function ProfilePage() {
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold">Ratings & Feedback</h2>
                   <div className="flex items-center gap-3">
-                    <select value={sort} onChange={(e) => setSort(e.target.value as any)} className="bg-transparent border border-white/5 text-sm rounded-md px-2 py-1">
+                    <select value={sort} onChange={(e) => setSort(e.target.value as any)} className="bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 text-sm rounded-md px-2 py-1">
                       <option value="latest">Latest</option>
                       <option value="highest">Highest</option>
                     </select>
@@ -350,7 +350,7 @@ export default function ProfilePage() {
 
                 <div className="mt-4 space-y-3">
                   {sortedFeedback().map((f) => (
-                    <div key={f.id} className="p-4 rounded-lg bg-white/5">
+                    <div key={f.id} className="p-4 rounded-lg bg-neutral-100 dark:bg-neutral-800/50">
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="font-semibold">{f.mentor}</div>
@@ -378,7 +378,7 @@ export default function ProfilePage() {
       {showAddSkill && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50" onClick={() => setShowAddSkill(false)} />
-          <div className="relative z-10 w-full max-w-md rounded-lg bg-white dark:bg-neutral-900 p-6">
+          <div className="relative z-10 w-full max-w-md rounded-lg bg-neutral-50 dark:bg-neutral-900 p-6 text-neutral-900 dark:text-neutral-100">
             <h3 className="text-lg font-bold">Add Skill</h3>
             <div className="mt-4 grid gap-3">
               <input value={newSkillName} onChange={(e) => setNewSkillName(e.target.value)} placeholder="Skill name" className="w-full rounded-md bg-transparent border border-neutral-200/5 px-3 py-2" />
