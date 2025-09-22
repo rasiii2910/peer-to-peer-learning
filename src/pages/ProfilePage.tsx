@@ -300,7 +300,7 @@ export default function ProfilePage() {
                 )}
 
                 {/* Profiles dropdown for adding external profiles */}
-                <ProfilesWidget />
+                <ProfilesWidget profiles={profiles} onAdd={handleAddProfile} onRemove={handleRemoveProfile} />
               </section>
 
               {/* Skills */}
