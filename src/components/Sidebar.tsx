@@ -37,7 +37,7 @@ export default function Sidebar() {
         <div className="text-center mb-3">
           <h2 className="brand-title text-3xl font-extrabold text-white">SkillSwap</h2>
           <p className="brand-tagline mt-2 text-xs text-white/90 max-w-[12rem] mx-auto">Your Skills, Their Growth</p>
-          <p className="brand-tagline text-xxs text-white/60 max-w-[9rem] mx-auto">A Community Of Learners, By Learners</p>
+          <p className="text-xxs text-white/60 max-w-[15rem] mx-auto">A Community Of Learners, By Learners</p>
         </div>
 
         <div className="h-px bg-white/10 my-3 rounded" />
