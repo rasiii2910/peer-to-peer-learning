@@ -8,15 +8,38 @@ import ProfilePage from './pages/ProfilePage';
 
 export default function App() {
   return (
-    <AuthLayout>
-      <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/dashboard" element={<ProfilePage />} />
-        <Route path="*" element={<Navigate to="/signin" replace />} />
-      </Routes>
-    </AuthLayout>
+    <Routes>
+      {/* Auth routes use the AuthLayout */}
+      <Route
+        path="/signin"
+        element={
+          <AuthLayout>
+            <SignIn />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <AuthLayout>
+            <SignUp />
+          </AuthLayout>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <AuthLayout>
+            <ForgotPassword />
+          </AuthLayout>
+        }
+      />
+
+      {/* Main app routes (profile/dashboard) - full width */}
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/dashboard" element={<ProfilePage />} />
+
+      <Route path="*" element={<Navigate to="/signin" replace />} />
+    </Routes>
   );
 }
