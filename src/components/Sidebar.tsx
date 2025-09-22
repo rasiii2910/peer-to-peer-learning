@@ -29,9 +29,7 @@ export default function Sidebar() {
       {/* background & floating squares */}
       <div className="absolute inset-0 -z-10 rounded-lg" style={{ background: 'linear-gradient(180deg, rgba(76,29,149,0.6), rgba(79,70,229,0.35))' }} />
       <FloatingSquares />
-      <div className="absolute inset-0 -z-20">
-        
-      </div>
+      
 
       <div className="relative z-20 flex flex-col h-full">
         {/* Top brand block */}
