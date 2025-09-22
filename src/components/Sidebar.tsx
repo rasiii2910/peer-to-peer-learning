@@ -79,11 +79,11 @@ export default function Sidebar() {
           <div className="relative z-20 p-6 border-t border-white/10 bg-transparent">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   R
                 </div>
-                <div>
-                  <div className="text-white text-sm font-medium">Rasika Thakur</div>
+                <div className="min-w-0">
+                  <div className="text-white text-sm font-medium truncate whitespace-nowrap">Rasika Thakur</div>
                   <div className="text-white/60 text-xs">Student</div>
                 </div>
               </div>
@@ -92,16 +92,16 @@ export default function Sidebar() {
             <div className="flex items-center gap-2">
               <button
                 onClick={toggle}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 text-white/80 hover:bg-white/20 transition-all"
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 text-white/90 hover:bg-white/20 transition-all"
                 title="Toggle Theme"
               >
                 {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                    <path d="M12 2a.75.75 0 01.75.75V5a.75.75 0 01-1.5 0V2.75A.75.75 0 0112 2zm0 15a3 3 0 100-6 3 3 0 000 6zM4.5 12a.75.75 0 01.75-.75H7.5a.75.75 0 010 1.5H5.25A.75.75 0 014.5 12z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 3v2m0 14v2m8.66-9h-2M5.34 12H3m13.07 6.07l-1.41-1.41M7.05 7.05 5.64 5.64m12.02 0l-1.41 1.41M7.05 16.95 5.64 18.36M12 7a5 5 0 100 10 5 5 0 000-10z" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                    <path d="M21.752 15.002A9.718 9.718 0 0112 21.75c-5.385 0-9.75-4.365-9.75-9.75 0-4.28 2.75-7.915 6.588-9.229a.75.75 0 01.967.966 8.251 8.251 0 0010.228 10.228.75.75 0 01.966.967z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
                   </svg>
                 )}
               </button>
