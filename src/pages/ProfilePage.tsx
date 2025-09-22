@@ -162,6 +162,9 @@ export default function ProfilePage() {
                 ) : (
                   <p className="mt-3 text-neutral-700 dark:text-neutral-300 leading-relaxed">{bio}</p>
                 )}
+
+                {/* Profiles dropdown for adding external profiles */}
+                <ProfilesWidget />
               </section>
 
               {/* Skills */}
