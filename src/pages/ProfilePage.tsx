@@ -76,7 +76,9 @@ export default function ProfilePage() {
     <div className="min-h-screen w-full flex items-start justify-center p-6 relative">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-purple-950 to-black opacity-90" />
 
-      <div className="relative w-full max-w-6xl rounded-xl p-[2px]" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
+      <Sidebar />
+
+      <div className="relative w-full max-w-6xl rounded-xl p-[2px] mx-auto" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
         <div
           className="relative overflow-hidden rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
           style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}
