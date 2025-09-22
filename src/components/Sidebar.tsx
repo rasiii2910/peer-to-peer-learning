@@ -76,8 +76,8 @@ export default function Sidebar() {
 
         {/* bottom section */}
         <div className="mt-auto pt-6">
-          <div className="relative z-20 p-6 border-t border-white/10 bg-transparent">
-            <div className="flex items-center justify-between mb-4">
+          <div className="relative z-20 p-6 border-t border-white/10 bg-transparent w-full">
+            <div className="flex items-center gap-3 mb-4 w-full">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   R
@@ -89,24 +89,24 @@ export default function Sidebar() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full justify-end">
               <button
                 onClick={toggle}
                 className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 text-white/90 hover:bg-white/20 transition-all"
                 title="Toggle Theme"
               >
                 {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="black" className="h-5 w-5 stroke-[0.5] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 3v2m0 14v2m8.66-9h-2M5.34 12H3m13.07 6.07l-1.41-1.41M7.05 7.05 5.64 5.64m12.02 0l-1.41 1.41M7.05 16.95 5.64 18.36M12 7a5 5 0 100 10 5 5 0 000-10z" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="black" className="h-5 w-5 stroke-[0.5] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
                   </svg>
                 )}
               </button>
 
-              <button className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-all text-xs font-medium flex-1 justify-center">
+              <button className="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-all text-xs font-medium flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3">
                   <path d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3h-8v2h8v14h-8v2h8a2 2 0 002-2V5a2 2 0 00-2-2z" />
                 </svg>
