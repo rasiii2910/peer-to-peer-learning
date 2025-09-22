@@ -28,7 +28,7 @@ export default function Sidebar() {
       {/* Top brand */}
       <div className="text-center mb-4">
         <h2 className="brand-title text-2xl font-extrabold text-white">SkillSwap</h2>
-        <p className="brand-tagline mt-1 text-xs text-white/90">Your Skills, Their Growth — A community of learners</p>
+        <p className="brand-tagline mt-1 text-xs text-white/90">Your Skills, Their Growth — A community of learners, by learners</p>
       </div>
 
       <div className="h-px bg-white/10 my-3 rounded" />
