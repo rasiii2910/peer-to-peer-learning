@@ -107,7 +107,7 @@ function ProfilesWidget() {
             {profiles.map((p) => {
               const svc = services.find((s) => s.key === p.key)!;
               return (
-                <div key={p.id} className="p-3 rounded-md bg-white/3 flex items-center justify-between">
+                <div key={p.id} className="p-3 rounded-md bg-white/5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="bg-white/5 p-2 rounded">{svc.icon}</div>
                     <div className="min-w-0">
