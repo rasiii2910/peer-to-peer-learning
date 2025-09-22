@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import FloatingSquares from '../components/FloatingSquares';
 import { useTheme } from '../theme/ThemeProvider';
 
 type Skill = { id: string; name: string; level: 'Beginner' | 'Intermediate' | 'Advanced' };
