@@ -31,7 +31,7 @@ export default function Sidebar() {
       <FloatingSquares />
       
 
-      <div className="relative z-20 flex flex-col h-full">
+      <div className="relative z-20 flex flex-col h-full pb-28">
         {/* Top brand block */}
         <div className="text-center mb-3">
           <h2 className="brand-title text-3xl font-extrabold text-white">SkillSwap</h2>
