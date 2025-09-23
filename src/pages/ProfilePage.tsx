@@ -458,6 +458,47 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
+
+      {/* Crop Modal */}
+      {showCrop && cropSrc && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60" onClick={() => { setShowCrop(false); setCropSrc(null); }} />
+          <div className="relative z-10 w-full max-w-2xl rounded-lg bg-neutral-50 dark:bg-neutral-900 p-6 text-neutral-900 dark:text-neutral-100">
+            <h3 className="text-lg font-bold">Crop Avatar</h3>
+            <div className="mt-4 flex flex-col md:flex-row gap-4">
+              <div className="w-full md:w-1/2 flex items-center justify-center">
+                <div className="w-56 h-56 rounded-full overflow-hidden bg-black/5 relative">
+                  <img src={cropSrc} alt="crop" draggable={false} className="absolute inset-0 w-full h-full object-cover" style={{ transform: `translate(${cropX}%, ${cropY}%) scale(${cropZoom})` }} />
+                  <div className="pointer-events-none absolute inset-0 rounded-full border-2 border-white/30" />
+                </div>
+              </div>
+
+              <div className="flex-1">
+                <div className="mb-3">
+                  <label className="block text-sm font-medium">Zoom</label>
+                  <input type="range" min={1} max={3} step={0.01} value={cropZoom} onChange={(e) => setCropZoom(Number(e.target.value))} className="w-full" />
+                </div>
+
+                <div className="mb-3">
+                  <label className="block text-sm font-medium">Horizontal</label>
+                  <input type="range" min={-50} max={50} step={1} value={cropX} onChange={(e) => setCropX(Number(e.target.value))} className="w-full" />
+                </div>
+
+                <div className="mb-3">
+                  <label className="block text-sm font-medium">Vertical</label>
+                  <input type="range" min={-50} max={50} step={1} value={cropY} onChange={(e) => setCropY(Number(e.target.value))} className="w-full" />
+                </div>
+
+                <div className="mt-4 flex items-center justify-end gap-3">
+                  <button onClick={() => { setShowCrop(false); setCropSrc(null); }} className="px-3 py-2 rounded-md bg-white/5">Cancel</button>
+                  <button onClick={saveCropped} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
