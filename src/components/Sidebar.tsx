@@ -96,20 +96,6 @@ export default function Sidebar() {
                 title="Toggle Theme"
               >
                 {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-white">
-                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.2" />
-                    <g stroke="currentColor" strokeWidth="1.2">
-                      <path d="M12 2v2" />
-                      <path d="M12 20v2" />
-                      <path d="M20 12h2" />
-                      <path d="M2 12H4" />
-                      <path d="M18.36 5.64l1.41 1.41" />
-                      <path d="M4.23 19.77l1.41-1.41" />
-                      <path d="M18.36 18.36l1.41-1.41" />
-                      <path d="M4.23 4.23l1.41 1.41" />
-                    </g>
-                  </svg>
-                ) : (
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-yellow-400">
                     <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.4" fill="currentColor" />
                     <g stroke="currentColor" strokeWidth="1.2">
@@ -122,6 +108,10 @@ export default function Sidebar() {
                       <path d="M4.22 19.78l1.42-1.42" />
                       <path d="M18.36 5.64l1.42-1.42" />
                     </g>
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-white">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" strokeWidth="1.2" />
                   </svg>
                 )}
               </button>
