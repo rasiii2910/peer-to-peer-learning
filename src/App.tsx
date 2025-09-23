@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import ProfilePage from './pages/ProfilePage';
 import Dashboard from './pages/Dashboard';
+import Sidebar from './components/Sidebar';
 
 export default function App() {
   return (
