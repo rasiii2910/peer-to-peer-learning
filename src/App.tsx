@@ -38,7 +38,7 @@ export default function App() {
 
       {/* Main app routes (profile/dashboard) - full width */}
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/dashboard" element={<ProfilePage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
       <Route path="*" element={<Navigate to="/signin" replace />} />
     </Routes>
