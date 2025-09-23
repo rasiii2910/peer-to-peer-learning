@@ -185,10 +185,72 @@ export default function ProfilePage() {
 
   const avgRating = useMemo(() => Math.round((feedback.reduce((s, f) => s + f.rating, 0) / Math.max(1, feedback.length)) || 0), [feedback]);
 
+  // Avatar change triggers crop modal
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
+  const [cropZoom, setCropZoom] = useState(1);
+  const [cropX, setCropX] = useState(0);
+  const [cropY, setCropY] = useState(0);
+  const [showCrop, setShowCrop] = useState(false);
+
   function onAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0];
     if (!f) return;
-    setAvatar(URL.createObjectURL(f));
+    const url = URL.createObjectURL(f);
+    setCropSrc(url);
+    setCropZoom(1);
+    setCropX(0);
+    setCropY(0);
+    setShowCrop(true);
+  }
+
+  async function saveCropped() {
+    if (!cropSrc) return;
+    const img = await new Promise<HTMLImageElement>((res, rej) => {
+      const i = new Image();
+      i.crossOrigin = 'anonymous';
+      i.onload = () => res(i);
+      i.onerror = rej;
+      i.src = cropSrc;
+    });
+
+    const size = 256; // output size
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d')!;
+
+    // fill with transparent
+    ctx.clearRect(0, 0, size, size);
+
+    // compute source rectangle from image based on zoom and offsets
+    const zoom = Math.max(1, cropZoom);
+    const srcW = img.naturalWidth / zoom;
+    const srcH = img.naturalHeight / zoom;
+
+    // offsets are percentage -50..50 -> map to pixel shift
+    const offsetX = (cropX / 100) * img.naturalWidth;
+    const offsetY = (cropY / 100) * img.naturalHeight;
+
+    const srcX = Math.max(0, (img.naturalWidth - srcW) / 2 + offsetX - srcW / 2);
+    const srcY = Math.max(0, (img.naturalHeight - srcH) / 2 + offsetY - srcH / 2);
+
+    // draw image to canvas filling whole canvas
+    // create circular clip
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+
+    ctx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, size, size);
+    ctx.restore();
+
+    const dataUrl = canvas.toDataURL('image/png');
+    setAvatar(dataUrl);
+    setShowCrop(false);
+    // revoke object URL
+    try { URL.revokeObjectURL(cropSrc); } catch (e) {}
+    setCropSrc(null);
   }
 
   function addSkill() {
