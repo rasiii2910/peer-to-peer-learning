@@ -75,8 +75,8 @@ export default function Sidebar() {
         </nav>
 
         {/* bottom section */}
-        <div className="mt-auto pt-6">
-          <div className="relative z-20 p-6 border-t border-white/10 bg-transparent w-full">
+        <div className="absolute left-0 right-0 bottom-0 z-20">
+          <div className="p-6 border-t border-white/10 bg-transparent w-full">
             <div className="flex items-center gap-3 mb-4 w-full">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
