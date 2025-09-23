@@ -92,16 +92,36 @@ export default function Sidebar() {
             <div className="flex items-center gap-2 w-full justify-end">
               <button
                 onClick={toggle}
-                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/10 text-white/90 hover:bg-white/20 transition-all"
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/8 text-white/90 hover:bg-white/18 transition-all ring-0 focus:ring-2 focus:ring-white/10"
                 title="Toggle Theme"
               >
                 {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 3v2m0 14v2m8.66-9h-2M5.34 12H3m13.07 6.07l-1.41-1.41M7.05 7.05 5.64 5.64m12.02 0l-1.41 1.41M7.05 16.95 5.64 18.36M12 7a5 5 0 100 10 5 5 0 000-10z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-white">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.2" />
+                    <g stroke="currentColor" strokeWidth="1.2">
+                      <path d="M12 2v2" />
+                      <path d="M12 20v2" />
+                      <path d="M20 12h2" />
+                      <path d="M2 12H4" />
+                      <path d="M18.36 5.64l1.41 1.41" />
+                      <path d="M4.23 19.77l1.41-1.41" />
+                      <path d="M18.36 18.36l1.41-1.41" />
+                      <path d="M4.23 4.23l1.41 1.41" />
+                    </g>
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 stroke-[0.5] text-white">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-yellow-400">
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.4" fill="currentColor" />
+                    <g stroke="currentColor" strokeWidth="1.2">
+                      <path d="M12 1v2" />
+                      <path d="M12 21v2" />
+                      <path d="M4.22 4.22l1.42 1.42" />
+                      <path d="M18.36 18.36l1.42 1.42" />
+                      <path d="M1 12h2" />
+                      <path d="M21 12h2" />
+                      <path d="M4.22 19.78l1.42-1.42" />
+                      <path d="M18.36 5.64l1.42-1.42" />
+                    </g>
                   </svg>
                 )}
               </button>
