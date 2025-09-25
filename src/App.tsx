@@ -11,6 +11,8 @@ import MessagesList from './pages/MessagesList';
 import ChatView from './pages/ChatView';
 import ReadProfilePage from './pages/ReadOnlyProfile';
 import TestsPage from './pages/Tests';
+import ConceptMatch from './pages/ConceptMatch';
+import ConceptMatchResult from './pages/ConceptMatchResult';
 
 export default function App() {
   return (
