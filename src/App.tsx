@@ -150,21 +150,41 @@ export default function App() {
       //     </div>
       //   )}
       // />*/}
-      <Route
+     <Route
   path="/tests/:id"
   element={
-    <div className="min-h-screen w-full flex items-start justify-center p-6 relative bg-gradient-to-br from-black via-purple-950 to-black">
-      
-      {/* Optional overlay for slight opacity */}
-      <div className="absolute inset-0 -z-10 opacity-90" />
+    <div className="min-h-screen w-full flex items-start justify-center p-6 relative">
+      {/* Background gradient */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-purple-950 to-black opacity-90" />
 
-      {/* Main content container */}
-      <main className="relative w-full max-w-6xl p-6 md:p-10 overflow-auto hide-scrollbar">
-        <ConceptMatch />
-      </main>
+      {/* Outer container with gradient border */}
+      <div
+        className="relative w-full max-w-6xl rounded-xl p-[2px] mx-auto"
+        style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}
+      >
+        {/* Inner content */}
+        <div
+          className="relative overflow-hidden rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
+          style={{
+            boxShadow:
+              '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)',
+          }}
+        >
+          <main className="p-6 md:p-10 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
+            <ConceptMatch />
+          </main>
+
+          {/* Glow effect */}
+          <div
+            className="pointer-events-none absolute inset-0 rounded-lg"
+            style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }}
+          />
+        </div>
+      </div>
     </div>
   }
 />
+
 
 
 
