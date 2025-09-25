@@ -193,11 +193,11 @@ export default function ConceptMatch() {
       {/* Two-column layout */}
       <div className="relative z-10 flex-1 flex flex-col md:flex-row">
         {/* Left column: rocket + space animation - full height on desktop */}
-        <div className="w-full md:w-1/2 h-48 md:h-full relative flex items-center justify-center bg-black/10">
+        <div className="w-full md:w-1/2 h-48 md:h-full relative flex items-center justify-center bg-black/10 p-4">
           <div
             className="transition-all duration-150 ease-linear"
             style={{
-              transform: `translateY(${(1 - progress) * 60}vh)`,
+              transform: `translateY(${(1 - progress) * 40}vh)`,
             }}
           >
             <svg 
@@ -206,7 +206,7 @@ export default function ConceptMatch() {
               viewBox="0 0 60 80" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
-              className="md:w-20 md:h-24 lg:w-24 lg:h-28"
+              className="w-12 h-16 md:w-16 md:h-20 lg:w-20 lg:h-24"
             >
               <path d="M30 5 L45 55 L35 65 L30 55 L25 65 L15 55 L30 5 Z" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="1"/>
               <path d="M30 5 L35 25 L25 25 L30 5 Z" fill="#3b82f6"/>
@@ -217,20 +217,21 @@ export default function ConceptMatch() {
           </div>
         </div>
 
-        {/* Right column: question and options */}
-        <div className="w-full md:w-1/2 p-4 md:p-6 lg:p-8 flex flex-col justify-between h-full">
-          {/* Question and options */}
-          <div className="flex-1 flex flex-col justify-center">
-            <div className="mb-4 md:mb-6">
+        {/* Right column: question and options - scrollable if needed */}
+        <div className="w-full md:w-1/2 p-4 md:p-6 lg:p-8 flex flex-col h-full">
+          <div className="flex-1 flex flex-col justify-center max-h-full overflow-hidden">
+            {/* Question section */}
+            <div className="mb-4 md:mb-6 lg:mb-8">
               <div className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 line-clamp-3">
                 {questions[index].question}
               </div>
-              <div className="text-sm text-neutral-500">
+              <div className="text-xs md:text-sm text-neutral-500">
                 Question {index + 1} / {total}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+            {/* Options grid - responsive and scrollable */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 flex-1 overflow-auto max-h-[50vh] md:max-h-none">
               {questions[index].options.map((opt, i) => {
                 const isSelected = selected === i;
                 const isCorrect = i === questions[index].correct;
@@ -241,14 +242,14 @@ export default function ConceptMatch() {
                     key={i}
                     onClick={() => choose(i)}
                     disabled={selected !== null}
-                    className={`text-left p-3 md:p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 min-h-16 md:min-h-20 ${
-                      showResult
-                        ? isCorrect
-                          ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
-                          : isSelected
+                    className={`text-left p-3 md:p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 min-h-16 md:min-h-20 ${showResult
+                      ? (isCorrect
+                        ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
+                        : isSelected
                           ? 'border-red-400 bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300'
                           : 'border-neutral-200/50 bg-white/5 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-300'
-                        : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
+                      )
+                      : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
                     }`}
                   >
                     <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center font-semibold text-xs md:text-sm flex-shrink-0">
@@ -259,18 +260,18 @@ export default function ConceptMatch() {
                 );
               })}
             </div>
-          </div>
 
-          {/* Timer progress bar */}
-          <div className="mt-4 md:mt-6">
-            <div className="w-full bg-neutral-200/20 rounded-full h-2">
-              <div
-                className="bg-blue-500 h-2 rounded-full transition-all duration-150"
-                style={{ width: `${progress * 100}%` }}
-              ></div>
-            </div>
-            <div className="text-xs text-neutral-500 mt-2 text-center">
-              Time remaining: {Math.ceil(remaining)}s
+            {/* Timer progress bar - fixed at bottom */}
+            <div className="mt-4 md:mt-6 pt-4 border-t border-neutral-200/20">
+              <div className="w-full bg-neutral-200/20 rounded-full h-2">
+                <div
+                  className="bg-blue-500 h-2 rounded-full transition-all duration-150"
+                  style={{ width: `${progress * 100}%` }}
+                ></div>
+              </div>
+              <div className="text-xs text-neutral-500 mt-2 text-center">
+                Time remaining: {Math.ceil(remaining)}s
+              </div>
             </div>
           </div>
         </div>
