@@ -360,9 +360,11 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
               <section className="mt-8">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold">Bio</h2>
-                  <button onClick={() => setEditingBio((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
-                    {editingBio ? 'Save' : 'Edit'}
-                  </button>
+                  {!readOnly && (
+                    <button onClick={() => setEditingBio((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
+                      {editingBio ? 'Save' : 'Edit'}
+                    </button>
+                  )}
                 </div>
                 {editingBio ? (
                   <textarea value={bio} onChange={(e) => setBio(e.target.value)} className="mt-3 w-full min-h-[100px] rounded-md bg-transparent border border-neutral-200/5 p-3" />
