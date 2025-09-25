@@ -92,7 +92,7 @@ function SpaceBackground({ containerRef }: { containerRef: React.RefObject<HTMLE
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full rounded-lg pointer-events-none"
+      className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ zIndex: 0 }}
     />
   );
@@ -183,37 +183,54 @@ export default function ConceptMatch() {
   const progress = remaining / duration;
 
   return (
-    <div ref={containerRef} className="h-full min-h-[calc(100vh-3rem)] relative flex flex-col md:flex-row">
+    <div 
+      ref={containerRef} 
+      className="h-screen w-full relative flex flex-col md:flex-row overflow-hidden"
+    >
       {/* Space background covers entire container */}
       <SpaceBackground containerRef={containerRef} />
 
       {/* Two-column layout */}
       <div className="relative z-10 flex-1 flex flex-col md:flex-row">
-        {/* Left column: rocket + space animation - takes full height */}
-        <div className="w-full md:w-1/2 h-64 md:h-auto relative flex items-center justify-center bg-black/20">
+        {/* Left column: rocket + space animation - full height on desktop */}
+        <div className="w-full md:w-1/2 h-48 md:h-full relative flex items-center justify-center bg-black/10">
           <div
+            className="transition-all duration-150 ease-linear"
             style={{
-              marginTop: `${10 + (1 - progress) * 60}%`,
-              transition: 'margin-top 0.15s linear',
+              transform: `translateY(${(1 - progress) * 60}vh)`,
             }}
           >
-            <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 5 L45 55 L35 65 L30 55 L25 65 L15 55 L30 5 Z" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="1" />
-              <path d="M30 5 L35 25 L25 25 L30 5 Z" fill="#3b82f6" />
-              <circle cx="30" cy="20" r="4" fill="#1e40af" />
-              <path d="M15 55 L5 70 L15 65 Z" fill="#dc2626" />
-              <path d="M45 55 L55 70 L45 65 Z" fill="#dc2626" />
+            <svg 
+              width="60" 
+              height="80" 
+              viewBox="0 0 60 80" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="md:w-20 md:h-24 lg:w-24 lg:h-28"
+            >
+              <path d="M30 5 L45 55 L35 65 L30 55 L25 65 L15 55 L30 5 Z" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="1"/>
+              <path d="M30 5 L35 25 L25 25 L30 5 Z" fill="#3b82f6"/>
+              <circle cx="30" cy="20" r="4" fill="#1e40af"/>
+              <path d="M15 55 L5 70 L15 65 Z" fill="#dc2626"/>
+              <path d="M45 55 L55 70 L45 65 Z" fill="#dc2626"/>
             </svg>
           </div>
         </div>
 
-        {/* Right column: question and options - stacked vertically */}
-        <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col">
-          <div className="flex-1">
-            <div className="text-2xl font-semibold mb-2">{questions[index].question}</div>
-            <div className="text-sm text-neutral-500 mb-6">Question {index + 1} / {total}</div>
+        {/* Right column: question and options */}
+        <div className="w-full md:w-1/2 p-4 md:p-6 lg:p-8 flex flex-col justify-between h-full">
+          {/* Question and options */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="mb-4 md:mb-6">
+              <div className="text-lg md:text-xl lg:text-2xl font-semibold mb-2 line-clamp-3">
+                {questions[index].question}
+              </div>
+              <div className="text-sm text-neutral-500">
+                Question {index + 1} / {total}
+              </div>
+            </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {questions[index].options.map((opt, i) => {
                 const isSelected = selected === i;
                 const isCorrect = i === questions[index].correct;
@@ -224,18 +241,20 @@ export default function ConceptMatch() {
                     key={i}
                     onClick={() => choose(i)}
                     disabled={selected !== null}
-                    className={`text-left p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 min-h-20 ${showResult
-                      ? (isCorrect
-                        ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
-                        : isSelected
+                    className={`text-left p-3 md:p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 min-h-16 md:min-h-20 ${
+                      showResult
+                        ? isCorrect
+                          ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
+                          : isSelected
                           ? 'border-red-400 bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300'
                           : 'border-neutral-200/50 bg-white/5 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-300'
-                      )
-                      : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
-                      }`}
+                        : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
+                    }`}
                   >
-                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center font-semibold text-sm">{String.fromCharCode(65 + i)}</div>
-                    <div className="flex-1 text-sm">{opt}</div>
+                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center font-semibold text-xs md:text-sm flex-shrink-0">
+                      {String.fromCharCode(65 + i)}
+                    </div>
+                    <div className="flex-1 text-xs md:text-sm leading-tight">{opt}</div>
                   </button>
                 );
               })}
@@ -243,7 +262,7 @@ export default function ConceptMatch() {
           </div>
 
           {/* Timer progress bar */}
-          <div className="mt-3">
+          <div className="mt-4 md:mt-6">
             <div className="w-full bg-neutral-200/20 rounded-full h-2">
               <div
                 className="bg-blue-500 h-2 rounded-full transition-all duration-150"
