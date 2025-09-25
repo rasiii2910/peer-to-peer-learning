@@ -114,10 +114,12 @@ function ProfilesWidget({ profiles, onAdd, onRemove, readOnly }:{ profiles:{ id:
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => window.open(p.url, '_blank')} className="text-sm text-white/80 px-2 py-1 rounded bg-white/5">View</button>
-                    <button onClick={() => onRemove(p.id)} className="text-sm text-rose-400 px-2 py-1 rounded bg-transparent">Remove</button>
-                  </div>
+                  {!isReadOnly && (
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => window.open(p.url, '_blank')} className="text-sm text-white/80 px-2 py-1 rounded bg-white/5">View</button>
+                      <button onClick={() => onRemove(p.id)} className="text-sm text-rose-400 px-2 py-1 rounded bg-transparent">Remove</button>
+                    </div>
+                  )}
                 </div>
               );
             })}
