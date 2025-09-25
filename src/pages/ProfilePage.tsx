@@ -317,12 +317,14 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
                   <div>
                     <div className="flex items-center gap-3">
                       <h1 className="text-2xl md:text-3xl font-extrabold text-neutral-900 dark:text-white">{name}</h1>
-                      <button
-                        onClick={() => setEditingInfo((s) => !s)}
-                        className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md"
-                      >
-                        {editingInfo ? 'Save' : 'Edit'}
-                      </button>
+                      {!readOnly && (
+                        <button
+                          onClick={() => setEditingInfo((s) => !s)}
+                          className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md"
+                        >
+                          {editingInfo ? 'Save' : 'Edit'}
+                        </button>
+                      )}
                     </div>
 
                     {editingInfo ? (
