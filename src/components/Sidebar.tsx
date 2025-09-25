@@ -292,7 +292,7 @@ export default function Sidebar() {
             )}
           </button>
 
-          <button className="flex items-center gap-2 px-6 py-2 rounded-lg bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-all text-xs font-medium">
+          <button className="flex items-center gap-2 px-10 py-2 rounded-lg bg-red-500/20 text-red-300 hover:bg-red-500/30 transition-all text-xs font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
