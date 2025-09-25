@@ -9,7 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Sidebar from './components/Sidebar';
 import MessagesList from './pages/MessagesList';
 import ChatView from './pages/ChatView';
-import ReadOnlyProfile from './pages/ReadOnlyProfile';
+import ReadProfilePage from './pages/ReadOnlyProfile';
 
 export default function App() {
   return (
@@ -42,6 +42,7 @@ export default function App() {
 
       {/* Main app routes (profile/dashboard) - full width */}
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile" element={<ReadProfilePage />} />
       <Route
         path="/dashboard"
         element={(
