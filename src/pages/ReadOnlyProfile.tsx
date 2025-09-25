@@ -19,6 +19,136 @@ function Stars({ value }: { value: number }) {
   );
 }
 
+// Profiles widget allows adding external profiles (github, hackerrank, codechef, leetcode, portfolio)
+function ProfilesWidget({ profiles, onAdd, onRemove, readOnly }: { profiles: { id: string; key: string; url: string }[]; onAdd: (k: string, u: string) => void; onRemove: (id: string) => void; readOnly?: boolean }) {
+  const isReadOnly = !!readOnly;
+  const services = [
+    { key: 'github', label: 'GitHub', domain: 'github.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.942 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.91-1.294 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.338 4.686-4.566 4.935.359.31.679.92.679 1.853 0 1.337-.012 2.417-.012 2.747 0 .268.18.58.688.482A10.012 10.012 0 0022 12c0-5.523-4.477-10-10-10z" /></svg>) },
+    { key: 'hackerrank', label: 'HackerRank', domain: 'hackerrank.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" /></svg>) },
+    { key: 'codechef', label: 'CodeChef', domain: 'codechef.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" /></svg>) },
+    { key: 'leetcode', label: 'LeetCode', domain: 'leetcode.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" /></svg>) },
+    { key: 'portfolio', label: 'Portfolio', domain: '', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2l10 5v10l-10 5L2 17V7l10-5z" /></svg>) },
+  ];
+
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(services[0].key);
+  const [url, setUrl] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  function isValidUrl(val: string) {
+    try {
+      // ensure protocol present
+      const u = new URL(val);
+      return !!u.hostname;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function matchesDomain(key: string, val: string) {
+    if (!val) return false;
+    try {
+      const u = new URL(val);
+      const svc = services.find((s) => s.key === key);
+      if (!svc) return false;
+      if (!svc.domain) return true; // portfolio or custom
+      return u.hostname.includes(svc.domain);
+    } catch {
+      return false;
+    }
+  }
+
+  function addProfile() {
+    setError(null);
+    if (!isValidUrl(url)) {
+      setError('Enter a valid URL (include https://)');
+      return;
+    }
+    if (!matchesDomain(selected, url)) {
+      const svc = services.find((s) => s.key === selected);
+      setError(svc?.domain ? `URL must be from ${svc?.domain}` : 'Invalid URL');
+      return;
+    }
+    onAdd(selected, url);
+    setUrl('');
+  }
+
+  return (
+    <div className="mt-6">
+      <div className="flex items-center justify-between">
+        <h3 className="text-md font-semibold">Profiles</h3>
+        {!isReadOnly && (
+          <button onClick={() => setOpen((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
+            {open ? 'Close' : 'Add / Manage'}
+          </button>
+        )}
+      </div>
+
+      {open && !isReadOnly && (
+        <div className="mt-3 p-4 rounded-md bg-neutral-100 dark:bg-neutral-800/50">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <select value={selected} onChange={(e) => setSelected(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2">
+              {services.map((s) => (
+                <option key={s.key} value={s.key}>{s.label}</option>
+              ))}
+            </select>
+
+            <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://yourprofile.com/username" className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2 col-span-2 sm:col-span-2" />
+
+            <div className="sm:col-span-3 flex items-center gap-3">
+              <button onClick={addProfile} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">Add</button>
+              <div className="text-sm text-rose-400">{error}</div>
+            </div>
+          </div>
+
+          {/* list of profiles */}
+          <div className="mt-4 grid gap-2">
+            {profiles.map((p) => {
+              const svc = services.find((s) => s.key === p.key)!;
+              return (
+                <div key={p.id} className="p-3 rounded-md bg-neutral-100 dark:bg-neutral-800/50 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-neutral-200 dark:bg-white/5 p-2 rounded">{svc.icon}</div>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-white text-sm truncate">{svc.label}</div>
+                      <a className="text-xs text-purple-200 truncate block max-w-xs" href={p.url} target="_blank" rel="noreferrer">{p.url}</a>
+                    </div>
+                  </div>
+
+                  {!isReadOnly && (
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => window.open(p.url, '_blank')} className="text-sm text-white/80 px-2 py-1 rounded bg-white/5">View</button>
+                      <button onClick={() => onRemove(p.id)} className="text-sm text-rose-400 px-2 py-1 rounded bg-transparent">Remove</button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* always-visible profile cards */}
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        {profiles.map((p) => {
+          const svc = services.find((s) => s.key === p.key)!;
+          return (
+            <a key={`card-${p.id}`} href={p.url} target="_blank" rel="noreferrer" className="group block p-3 rounded-lg bg-neutral-100 dark:bg-neutral-800/50 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition">
+              <div className="flex items-start gap-3">
+                <div className="p-2 rounded bg-white/5">{svc.icon}</div>
+                <div className="min-w-0">
+                  <div className="font-semibold text-white truncate">{svc.label}</div>
+                  <div className="text-xs text-purple-200 truncate">{p.url.replace(/^https?:\/\//, '')}</div>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 const sampleUsers: Record<string, any> = {
   u1: {
     name: 'John Doe',
