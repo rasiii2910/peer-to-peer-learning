@@ -432,68 +432,78 @@ export default function ConceptMatch() {
 
   return (
     <div className="min-h-screen relative flex items-start justify-center p-6">
-      <div ref={containerRef} className="relative w-full max-w-6xl rounded-xl p-[2px]" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
-        <div className="relative overflow-hidden rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100" style={{ boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)' }}>
+      {/* Outer container with gradient border and background styling */}
+      <div 
+        ref={containerRef}
+        className="relative w-full max-w-6xl rounded-xl overflow-hidden bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
+        style={{ 
+          background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)',
+          boxShadow: '0 6px 30px rgba(124,58,237,0.35), inset 0 0 30px rgba(124,58,237,0.06)'
+        }}
+      >
+        {/* Space background animation */}
+        <SpaceBackground containerRef={containerRef} />
 
-          {/* Space dots inside this container */}
-          <SpaceBackground containerRef={containerRef} />
-
-          {/* Two-column layout */}
-          <div className="relative z-10 p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left column: rocket + space animation */}
-            <div className="relative flex items-center justify-center">
-              <div
-                style={{
-                  marginTop: `${10 + (1 - progress) * 60}%`,
-                  transition: 'margin-top 0.15s linear',
-                }}
-              >
-                <svg width="40" height="60" viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 5 L30 45 L25 50 L20 45 L15 50 L10 45 L20 5 Z" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="1" />
-                  <path d="M20 5 L25 20 L15 20 L20 5 Z" fill="#3b82f6" />
-                  <circle cx="20" cy="15" r="3" fill="#1e40af" />
-                  <path d="M10 45 L5 55 L10 50 Z" fill="#dc2626" />
-                  <path d="M30 45 L35 55 L30 50 Z" fill="#dc2626" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Right column: question and options */}
-            <div>
-              <div className="text-2xl font-semibold mb-2">{questions[index].question}</div>
-              <div className="text-sm text-neutral-500 mb-4">Question {index + 1} / {total}</div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {questions[index].options.map((opt, i) => {
-                  const isSelected = selected === i;
-                  const isCorrect = i === questions[index].correct;
-                  const showResult = selected !== null;
-
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => choose(i)}
-                      disabled={selected !== null}
-                      className={`text-left p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 h-28 ${showResult
-                        ? (isCorrect
-                          ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
-                          : isSelected
-                            ? 'border-red-400 bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300'
-                            : 'border-neutral-200/50 bg-white/5 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-300'
-                        )
-                        : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
-                        }`}
-                    >
-                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-semibold text-sm">{String.fromCharCode(65 + i)}</div>
-                      <div className="flex-1 text-sm">{opt}</div>
-                    </button>
-                  );
-                })}
-              </div>
+        {/* Two-column layout */}
+        <div className="relative z-10 p-8 grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[600px]">
+          {/* Left column: rocket animation */}
+          <div className="relative flex items-center justify-center">
+            <div
+              style={{
+                marginTop: `${10 + (1 - progress) * 60}%`,
+                transition: 'margin-top 0.15s linear',
+              }}
+            >
+              <svg width="40" height="60" viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 5 L30 45 L25 50 L20 45 L15 50 L10 45 L20 5 Z" fill="#e5e7eb" stroke="#9ca3af" strokeWidth="1"/>
+                <path d="M20 5 L25 20 L15 20 L20 5 Z" fill="#3b82f6"/>
+                <circle cx="20" cy="15" r="3" fill="#1e40af"/>
+                <path d="M10 45 L5 55 L10 50 Z" fill="#dc2626"/>
+                <path d="M30 45 L35 55 L30 50 Z" fill="#dc2626"/>
+              </svg>
             </div>
           </div>
 
+          {/* Right column: question and options */}
+          <div className="flex flex-col justify-center">
+            <div className="text-2xl font-semibold mb-2">{questions[index].question}</div>
+            <div className="text-sm text-neutral-500 mb-4">Question {index + 1} / {total}</div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {questions[index].options.map((opt, i) => {
+                const isSelected = selected === i;
+                const isCorrect = i === questions[index].correct;
+                const showResult = selected !== null;
+
+                return (
+                  <button
+                    key={i}
+                    onClick={() => choose(i)}
+                    disabled={selected !== null}
+                    className={`text-left p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 h-28 ${showResult
+                      ? (isCorrect
+                        ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
+                        : isSelected
+                          ? 'border-red-400 bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300'
+                          : 'border-neutral-200/50 bg-white/5 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-300'
+                      )
+                      : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
+                    }`}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-semibold text-sm">{String.fromCharCode(65 + i)}</div>
+                    <div className="flex-1 text-sm">{opt}</div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
+
+        {/* Glow effect */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-lg"
+          style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }}
+        />
       </div>
     </div>
   );
