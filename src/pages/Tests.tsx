@@ -31,12 +31,15 @@ const tests = [
   },
 ];
 
-const languages = ['JavaScript', 'TypeScript', 'Python', 'Java', 'C++'];
+const languages = [
+  'Assembly','Fortran','COBOL','Lisp','C','C++','Smalltalk','Squeak','Pharo','Java','Spring','Hibernate','JavaFX','Android SDK','Python','Django','Flask','FastAPI','JavaScript','React','Angular','Vue.js','Node.js','Next.js','PHP','Laravel','CodeIgniter','CakePHP','Ruby','Sinatra','Ruby on Rails','C#','.NET','ASP.NET','Unity','Swift','SwiftUI','UIKit','Vapor','Kotlin','Android SDK','Dart','Flutter','Go (Golang)','Fiber','Revel','Echo','Gin','Rust','Yew','Actix-web','Rocket','TypeScript','R','MATLAB','SQL','NoSQL','Shell / Bash'
+];
 
 export default function TestsPage() {
   const [openTest, setOpenTest] = useState<string | null>(null);
   const [step, setStep] = useState<'select' | 'instructions'>('select');
   const [selectedLang, setSelectedLang] = useState(languages[0]);
+  const navigate = (window && (window as any).__navigate) || undefined;
 
   function open(tid: string) {
     setOpenTest(tid);
@@ -50,6 +53,16 @@ export default function TestsPage() {
   }
 
   const test = tests.find((t) => t.id === openTest) || null;
+
+  // navigate using window history if react-router navigate not available in this module context
+  function startTest() {
+    if (!test) return;
+    // use location navigation to test-specific route
+    window.history.pushState({ language: selectedLang }, '', `/tests/${test.id}`);
+    // dispatch a popstate so the router picks it up in dev preview
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    close();
+  }
 
   return (
     <div className="w-full max-w-4xl">
