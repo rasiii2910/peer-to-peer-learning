@@ -381,9 +381,11 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-bold">Skills</h2>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => setShowAddSkill(true)} className="text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 rounded-full">
-                      Add Skill
-                    </button>
+                    {!readOnly && (
+                      <button onClick={() => setShowAddSkill(true)} className="text-sm text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 rounded-full">
+                        Add Skill
+                      </button>
+                    )}
                   </div>
                 </div>
 
