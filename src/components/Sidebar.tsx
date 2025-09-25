@@ -228,24 +228,10 @@ export default function Sidebar() {
           }
           label="Messages"
         />
-        <NavItem
-          to="/messages"
-          icon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              className="h-5 w-5 text-purple-100"
-            >
-              <path d="M20 2H4a2 2 0 00-2 2v14l4-2h14a2 2 0 002-2V4a2 2 0 00-2-2z" />
-            </svg>
-          }
-          label="Messages"
-        />
       </nav>
 
       {/* Bottom profile block - fixed */}
-      <div className="relative z-30 border-t border-white/10 p-6">
+      <div className="relative z-20 border-t border-white/10 p-6">
         <div className="flex items-center gap-3 mb-4 w-full">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
             R
