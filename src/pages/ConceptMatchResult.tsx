@@ -48,9 +48,55 @@ export default function ConceptMatchResult() {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center gap-3">
-        <button onClick={() => navigate('/tests')} className="px-4 py-2 rounded-md bg-white/5">Back to tests</button>
-        <button onClick={() => navigate('/profile')} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">View Profile</button>
+          <div className="mt-6">
+        <h3 className="text-lg font-semibold mb-3">Review Answers</h3>
+
+        <div className="space-y-3">
+          {(state.questions || []).map((q: any, i: number) => {
+            const ans = (state.answers || []).find((a: any) => a.qid === q.id) || { chosen: null, correct: q.correct };
+            const chosen = ans.chosen;
+            const isCorrect = chosen === q.correct;
+            return (
+              <div key={q.id} className="p-4 rounded-lg bg-neutral-50 dark:bg-neutral-900">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="font-semibold">{i + 1}. {q.question}</div>
+                    <div className="mt-2 space-y-2">
+                      {q.options.map((opt: string, idx: number) => {
+                        const correctOpt = idx === q.correct;
+                        const chosenOpt = idx === chosen;
+                        return (
+                          <div key={idx} className={`p-2 rounded-md flex items-center gap-3 ${correctOpt ? 'bg-green-600/10' : chosenOpt && !correctOpt ? 'bg-rose-600/10' : ''}`}>
+                            <div className="w-6 text-xs text-neutral-500">{String.fromCharCode(65 + idx)}</div>
+                            <div className="flex-1 text-sm">{opt}</div>
+                            <div className="w-24 text-right text-sm">
+                              {correctOpt && <span className="text-emerald-500 font-semibold">Correct</span>}
+                              {chosenOpt && !correctOpt && <span className="text-rose-400 font-semibold">Your answer</span>}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {!isCorrect && (
+                      <div className="mt-2 text-sm text-emerald-500">Correct answer: <strong>{q.options[q.correct]}</strong></div>
+                    )}
+
+                  </div>
+
+                  <div className="ml-4 text-sm text-neutral-500">
+                    {isCorrect ? <span className="text-emerald-500">✓</span> : <span className="text-rose-400">✕</span>}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-6 flex items-center gap-3">
+          <button onClick={() => navigate('/tests')} className="px-4 py-2 rounded-md bg-white/5">Back to tests</button>
+          <button onClick={() => navigate('/profile')} className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">View Profile</button>
+        </div>
       </div>
     </div>
   );
