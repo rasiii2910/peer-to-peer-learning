@@ -10,7 +10,7 @@ const conversations = [
 export default function MessagesList() {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col h-full min-h-[60vh]">
+    <div className="flex flex-col h-full min-h-[calc(100vh-4rem)]">
       <div>
         <h2 className="text-2xl font-bold">Messages</h2>
         <p className="text-sm text-neutral-500">Recent conversations</p>
