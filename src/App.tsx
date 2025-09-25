@@ -140,9 +140,9 @@ export default function App() {
                     <Sidebar />
                   </div>
 
-                  <main className="col-span-1 md:col-span-3 p-6 md:p-10 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
+                  <div className="col-span-1 md:col-span-3 p-6 md:p-10 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
                     <ConceptMatch />
-                  </main>
+                  </div>
                 </div>
 
                 <div className="pointer-events-none absolute inset-0 rounded-lg" style={{ boxShadow: '0 0 40px rgba(124,58,237,0.35)' }} />
