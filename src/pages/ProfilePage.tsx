@@ -148,14 +148,14 @@ function ProfilesWidget({ profiles, onAdd, onRemove, readOnly }:{ profiles:{ id:
   );
 }
 
-export default function ProfilePage() {
+export default function ProfilePage({ readOnly = false, initialData = undefined }:{ readOnly?: boolean; initialData?: any } = {}) {
   const { theme } = useTheme();
-  const [avatar, setAvatar] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState<string | null>(initialData?.avatar ?? null);
   const [editingInfo, setEditingInfo] = useState(false);
-  const [name, setName] = useState('Rasika Thakur');
-  const [yearBranch, setYearBranch] = useState('3rd Year – Computer Science');
-  const [email, setEmail] = useState('rasika@example.com');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState(initialData?.name ?? 'Rasika Thakur');
+  const [yearBranch, setYearBranch] = useState(initialData?.yearBranch ?? '3rd Year – Computer Science');
+  const [email, setEmail] = useState(initialData?.email ?? 'rasika@example.com');
+  const [phone, setPhone] = useState(initialData?.phone ?? '');
 
   // Profiles state lifted to the page so they can be visualized elsewhere
   const [profiles, setProfiles] = useState<{ id: string; key: string; url: string }[]>([]);
