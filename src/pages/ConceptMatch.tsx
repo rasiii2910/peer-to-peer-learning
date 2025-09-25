@@ -178,8 +178,8 @@ function SpaceBackground() {
     dotsRef.current = dots;
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(10, 10, 30, 1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear to keep transparency so page content isn't covered
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw stars/dots
       dotsRef.current.forEach(dot => {
@@ -192,16 +192,19 @@ function SpaceBackground() {
         if (dot.y < 0) dot.y = canvas.height;
         if (dot.y > canvas.height) dot.y = 0;
 
-        // Draw dot with blue glow
+        // Draw subtle blue glow
+        const grad = ctx.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, dot.size * 6);
+        grad.addColorStop(0, 'rgba(59,130,246,0.9)');
+        grad.addColorStop(0.4, 'rgba(59,130,246,0.35)');
+        grad.addColorStop(1, 'rgba(59,130,246,0)');
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, 0.8)`;
+        ctx.arc(dot.x, dot.y, dot.size * 6, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Add glow effect
+
         ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.size * 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, 0.2)`;
+        ctx.fillStyle = `rgba(59, 130, 246, 0.9)`;
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
