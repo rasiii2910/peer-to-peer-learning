@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar';
 import MessagesList from './pages/MessagesList';
 import ChatView from './pages/ChatView';
 import ReadProfilePage from './pages/ReadOnlyProfile';
+import TestsPage from './pages/Tests';
 
 export default function App() {
   return (
