@@ -400,12 +400,14 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
                         </div>
                       </div>
 
-                      <div className="flex flex-col items-end gap-2">
-                        <div className="flex gap-2">
-                          <button onClick={() => { const name = prompt('Edit skill name', s.name); if (name) setSkills((prev) => prev.map((x) => x.id === s.id ? { ...x, name } : x)); }} className="text-sm text-neutral-300">Edit</button>
-                          <button onClick={() => removeSkill(s.id)} className="text-sm text-rose-400">Remove</button>
+                      {!readOnly && (
+                        <div className="flex flex-col items-end gap-2">
+                          <div className="flex gap-2">
+                            <button onClick={() => { const name = prompt('Edit skill name', s.name); if (name) setSkills((prev) => prev.map((x) => x.id === s.id ? { ...x, name } : x)); }} className="text-sm text-neutral-300">Edit</button>
+                            <button onClick={() => removeSkill(s.id)} className="text-sm text-rose-400">Remove</button>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   ))}
                 </div>
