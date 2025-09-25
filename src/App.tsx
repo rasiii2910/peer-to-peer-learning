@@ -7,6 +7,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import ProfilePage from './pages/ProfilePage';
 import Dashboard from './pages/Dashboard';
 import Sidebar from './components/Sidebar';
+import MessagesList from './pages/MessagesList';
+import ChatView from './pages/ChatView';
+import ReadOnlyProfile from './pages/ReadOnlyProfile';
 
 export default function App() {
   return (
