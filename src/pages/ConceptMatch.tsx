@@ -462,7 +462,7 @@ export default function ConceptMatch() {
             <div className="text-2xl font-semibold mb-2">{questions[index].question}</div>
             <div className="text-sm text-neutral-500 mb-6">Question {index + 1} / {total}</div>
 
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               {questions[index].options.map((opt, i) => {
                 const isSelected = selected === i;
                 const isCorrect = i === questions[index].correct;
