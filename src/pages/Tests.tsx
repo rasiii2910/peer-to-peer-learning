@@ -130,7 +130,7 @@ export default function TestsPage() {
 
                 <div className="mt-6 flex items-center justify-end gap-3">
                   <button onClick={() => setStep('select')} className="px-4 py-2 rounded-md bg-white/5">Back</button>
-                  <button onClick={() => { alert('Starting test: ' + test.title + ' in ' + selectedLang); close(); }} className="px-4 py-2 rounded-md bg-gradient-to-r from-green-500 to-emerald-500 text-white">Start</button>
+                  <button onClick={() => startTest()} className="px-4 py-2 rounded-md bg-gradient-to-r from-green-500 to-emerald-500 text-white">Start</button>
                 </div>
               </div>
             )}
