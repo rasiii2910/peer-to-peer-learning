@@ -158,7 +158,7 @@ export default function Sidebar() {
   const { theme, toggle } = useTheme();
 
   return (
-    <aside className="md:col-span-1 relative p-5 overflow-hidden rounded-lg flex flex-col">
+    <aside className="md:col-span-1 relative p-0 overflow-hidden rounded-lg flex flex-col">
       {/* background & floating squares */}
       <div
         className="absolute inset-0 -z-10 rounded-lg"
