@@ -373,7 +373,7 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
                 )}
 
                 {/* Profiles dropdown for adding external profiles */}
-                <ProfilesWidget profiles={profiles} onAdd={handleAddProfile} onRemove={handleRemoveProfile} />
+                <ProfilesWidget profiles={profiles} onAdd={handleAddProfile} onRemove={handleRemoveProfile} readOnly={readOnly} />
               </section>
 
               {/* Skills */}
