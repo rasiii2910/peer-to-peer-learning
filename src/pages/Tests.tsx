@@ -33,7 +33,7 @@ const tests = [
 ];
 
 const languages = [
-  'Assembly','Fortran','COBOL','Lisp','C','C++','Smalltalk','Squeak','Pharo','Java','Spring','Hibernate','JavaFX','Android SDK','Python','Django','Flask','FastAPI','JavaScript','React','Angular','Vue.js','Node.js','Next.js','PHP','Laravel','CodeIgniter','CakePHP','Ruby','Sinatra','Ruby on Rails','C#','.NET','ASP.NET','Unity','Swift','SwiftUI','UIKit','Vapor','Kotlin','Android SDK','Dart','Flutter','Go (Golang)','Fiber','Revel','Echo','Gin','Rust','Yew','Actix-web','Rocket','TypeScript','R','MATLAB','SQL','NoSQL','Shell / Bash'
+  'Assembly','Fortran','COBOL','Lisp','C','C++','Smalltalk','Squeak','Pharo','Java','Spring','Hibernate','JavaFX','Android SDK','Python','Django','Flask','FastAPI','JavaScript','React','Angular','Vue.js','Node.js','Next.js','PHP','Laravel','CodeIgniter','CakePHP','Ruby','Sinatra','Ruby on Rails','C#','.NET','ASP.NET','Unity','Swift','SwiftUI','UIKit','Vapor','Kotlin','Dart','Flutter','Go (Golang)','Fiber','Revel','Echo','Gin','Rust','Yew','Actix-web','Rocket','TypeScript','R','MATLAB','SQL','NoSQL','Shell / Bash'
 ];
 
 export default function TestsPage() {
