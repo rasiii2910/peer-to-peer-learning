@@ -155,15 +155,15 @@ export default function App() {
         <Route
           path="/tests/:id"
           element={
-            <div className="min-h-screen w-full flex items-start justify-center p-6 relative">
+            <div className="h-screen w-full flex items-center justify-center p-4 md:p-6 relative overflow-hidden">
               {/* Background gradient */}
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-purple-950 to-black opacity-90" />
 
-              {/* Outer container with gradient border */}
-              <div className="relative w-full max-w-6xl rounded-xl mx-auto h-full">
-                {/* Inner content - removed the gradient border and glow effects */}
-                <div className="relative overflow-hidden rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 h-full">
-                  <main className="p-6 md:p-10 h-full overflow-auto hide-scrollbar">
+              {/* Outer container */}
+              <div className="relative w-full max-w-6xl h-full max-h-[90vh]">
+                {/* Inner content */}
+                <div className="relative w-full h-full rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
+                  <main className="w-full h-full overflow-hidden">
                     <ConceptMatch />
                   </main>
                 </div>
