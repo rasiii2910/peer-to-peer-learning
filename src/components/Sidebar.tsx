@@ -140,10 +140,11 @@ const NavItem = ({ to, icon, label }: { to: string; icon: React.ReactNode; label
   return (
     <Link
       to={to}
-      className={`flex items-center gap-3 px-3 py-3 rounded-md transition-all text-sm font-medium w-full ${active
+      className={`flex items-center gap-3 px-3 py-3 rounded-md transition-all text-sm font-medium w-full ${
+        active
           ? 'bg-white/8 text-white shadow-md'
           : 'text-neutral-300 hover:text-white hover:bg-white/5'
-        }`}
+      }`}
     >
       <div className={`p-2 rounded-md ${active ? 'bg-white/10' : 'bg-transparent'}`}>
         {icon}
@@ -169,7 +170,7 @@ export default function Sidebar() {
       <FloatingSquares />
 
       {/* Top brand block - fixed */}
-      <div className="absolute top-0 left-0 right-0 p-6 border-b border-white/10 bg-transparent z-20">
+      <div className="relative z-20 p-6 border-b border-white/10">
         <div className="text-center">
           <h2 className="brand-title text-3xl font-extrabold text-white">
             SkillSwap
@@ -184,7 +185,7 @@ export default function Sidebar() {
       </div>
 
       {/* Middle scrollable nav */}
-      <nav className="flex-1 mt-32 mb-28 flex flex-col gap-2 overflow-y-auto">
+      <nav className="relative z-20 flex-1 flex flex-col gap-2 px-6 py-4 overflow-y-auto">
         <NavItem
           to="/profile"
           icon={
@@ -230,7 +231,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom profile block - fixed */}
-      <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 p-6 bg-transparent z-20">
+      <div className="relative z-20 border-t border-white/10 p-6">
         <div className="flex items-center gap-3 mb-4 w-full">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
             R
@@ -305,6 +306,5 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
-
   );
 }
