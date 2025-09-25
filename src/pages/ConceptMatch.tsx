@@ -439,7 +439,7 @@ export default function ConceptMatch() {
       {/* Two-column layout */}
       <div className="relative z-10 flex-1 flex flex-col md:flex-row">
         {/* Left column: rocket + space animation - takes full height */}
-        <div className="w-full md:w-1/2 h-64 md:h-auto relative flex items-center justify-center bg-black/20">
+        <div className="w-full md:w-full h-64 md:h-auto relative flex items-center justify-center bg-black/20">
           <div
             style={{
               marginTop: `${10 + (1 - progress) * 60}%`,
