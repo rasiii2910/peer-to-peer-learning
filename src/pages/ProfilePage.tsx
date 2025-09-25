@@ -158,7 +158,7 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
   const [phone, setPhone] = useState(initialData?.phone ?? '');
 
   // Profiles state lifted to the page so they can be visualized elsewhere
-  const [profiles, setProfiles] = useState<{ id: string; key: string; url: string }[]>([]);
+  const [profiles, setProfiles] = useState<{ id: string; key: string; url: string }[]>(initialData?.profiles ?? []);
 
   function handleAddProfile(key: string, url: string) {
     setProfiles((p) => [...p, { id: String(Date.now()), key, url }]);
