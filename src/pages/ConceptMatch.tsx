@@ -416,56 +416,40 @@ export default function ConceptMatch() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+      {/* Main Content: question and 2x2 options (no black overlay) */}
+      <div className="relative z-10 flex items-start justify-center p-6">
         <div className="w-full max-w-4xl">
-          {/* Header */}
-          <div className="mb-6 text-center">
-            <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-              <h2 className="text-3xl font-bold text-white mb-2">Concept Match — {language}</h2>
-              <div className="text-blue-300">Question {index + 1} / {total}</div>
-            </div>
+          <div className="mb-4">
+            <div className="text-2xl font-semibold mb-2">{questions[index].question}</div>
+            <div className="text-sm text-neutral-500 mb-4">Question {index + 1} / {total}</div>
           </div>
 
-          {/* Question Card */}
-          <div className="bg-black/70 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-            <div className="text-2xl font-semibold text-white mb-6">
-              {questions[index].question}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {questions[index].options.map((opt, i) => {
+              const isSelected = selected === i;
+              const isCorrect = i === questions[index].correct;
+              const showResult = selected !== null;
 
-            <div className="grid gap-4">
-              {questions[index].options.map((opt, i) => {
-                const isSelected = selected === i;
-                const isCorrect = i === questions[index].correct;
-                const showResult = selected !== null;
-                
-                return (
-                  <button 
-                    key={i} 
-                    onClick={() => choose(i)} 
-                    disabled={selected !== null}
-                    className={`
-                      text-left p-4 rounded-xl border-2 transition-all duration-300 font-medium
-                      ${showResult 
-                        ? (isCorrect 
-                          ? 'border-green-400 bg-green-400/20 text-green-200' 
-                          : isSelected 
-                            ? 'border-red-400 bg-red-400/20 text-red-200'
-                            : 'border-white/20 bg-white/5 text-gray-400'
-                        )
-                        : 'border-white/20 bg-white/10 text-white hover:bg-white/20 hover:border-blue-400 cursor-pointer'
-                      }
-                      ${selected !== null ? 'cursor-not-allowed' : ''}
-                    `}
-                  >
-                    <span className="inline-block w-8 h-8 rounded-full bg-white/20 text-center leading-8 mr-3 text-sm">
-                      {String.fromCharCode(65 + i)}
-                    </span>
-                    {opt}
-                  </button>
-                );
-              })}
-            </div>
+              return (
+                <button
+                  key={i}
+                  onClick={() => choose(i)}
+                  disabled={selected !== null}
+                  className={`text-left p-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-start gap-3 h-28 ${showResult
+                    ? (isCorrect
+                      ? 'border-green-400 bg-green-50 dark:bg-green-900/10 text-green-800 dark:text-green-300'
+                      : isSelected
+                        ? 'border-red-400 bg-red-50 dark:bg-red-900/10 text-red-800 dark:text-red-300'
+                        : 'border-neutral-200/50 bg-white/5 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-300'
+                    )
+                    : 'border-neutral-200/20 bg-white/10 dark:bg-neutral-800 hover:bg-white/20 hover:dark:bg-neutral-700 cursor-pointer'
+                  }`}
+                >
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-semibold text-sm">{String.fromCharCode(65 + i)}</div>
+                  <div className="flex-1 text-sm">{opt}</div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
