@@ -42,7 +42,7 @@ export default function TestsPage() {
   const [openTest, setOpenTest] = useState<string | null>(null);
   const [step, setStep] = useState<'select' | 'instructions'>('select');
   const [selectedLang, setSelectedLang] = useState(languages[0]);
-  const navigate = (window && (window as any).__navigate) || undefined;
+  const navigate = useNavigate();
 
   function open(tid: string) {
     setOpenTest(tid);
