@@ -76,12 +76,14 @@ function ProfilesWidget({ profiles, onAdd, onRemove, readOnly }:{ profiles:{ id:
     <div className="mt-6">
       <div className="flex items-center justify-between">
         <h3 className="text-md font-semibold">Profiles</h3>
-        <button onClick={() => setOpen((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
-          {open ? 'Close' : 'Add / Manage'}
-        </button>
+        {!isReadOnly && (
+          <button onClick={() => setOpen((s) => !s)} className="text-sm text-purple-700 dark:text-purple-200 bg-white/5 px-2 py-1 rounded-md">
+            {open ? 'Close' : 'Add / Manage'}
+          </button>
+        )}
       </div>
 
-      {open && (
+      {open && !isReadOnly && (
         <div className="mt-3 p-4 rounded-md bg-neutral-100 dark:bg-neutral-800/50">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <select value={selected} onChange={(e) => setSelected(e.target.value)} className="rounded-md bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 border border-neutral-200/50 dark:border-neutral-700 px-3 py-2">
