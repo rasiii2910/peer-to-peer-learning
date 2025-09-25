@@ -152,17 +152,30 @@ const sampleQuestions: Q[] = [
 ];
 
 // Space background component
-function SpaceBackground() {
+interface SpaceBackgroundProps {
+  containerRef?: React.RefObject<HTMLDivElement>;
+}
+
+function SpaceBackground({ containerRef }: SpaceBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const dotsRef = useRef<Array<{x: number, y: number, vx: number, vy: number, size: number}>>([]);
+  const dotsRef = useRef<
+    Array<{ x: number; y: number; vx: number; vy: number; size: number }>
+  >([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = containerRef?.current;
+    if (!canvas || !container) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+    };
+    resizeCanvas();
 
     // Initialize dots
     const dots = [];
@@ -172,31 +185,28 @@ function SpaceBackground() {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 3 + 1
+        size: Math.random() * 3 + 1,
       });
     }
     dotsRef.current = dots;
 
     const animate = () => {
-      // Clear to keep transparency so page content isn't covered
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw stars/dots
-      dotsRef.current.forEach(dot => {
+      dotsRef.current.forEach((dot) => {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Wrap around edges
         if (dot.x < 0) dot.x = canvas.width;
         if (dot.x > canvas.width) dot.x = 0;
         if (dot.y < 0) dot.y = canvas.height;
         if (dot.y > canvas.height) dot.y = 0;
 
-        // Draw subtle blue glow
         const grad = ctx.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, dot.size * 6);
         grad.addColorStop(0, 'rgba(59,130,246,0.9)');
         grad.addColorStop(0.4, 'rgba(59,130,246,0.35)');
         grad.addColorStop(1, 'rgba(59,130,246,0)');
+
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.size * 6, 0, Math.PI * 2);
@@ -213,12 +223,21 @@ function SpaceBackground() {
 
     animate();
 
+    window.addEventListener('resize', resizeCanvas);
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [containerRef]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full rounded-lg pointer-events-none"
+      style={{ zIndex: 0 }}
+    />
+  );
+}
 
   useEffect(() => {
     const handleResize = () => {
@@ -244,7 +263,7 @@ function SpaceBackground() {
 
 export default function ConceptMatch() {
   const language = 'JavaScript'; // Default language
-
+  const containerRef = useRef<HTMLDivElement>(null);
   const questions = useMemo(() => {
     // shuffle sampleQuestions and take 10
     const arr = [...sampleQuestions];
@@ -361,8 +380,11 @@ export default function ConceptMatch() {
   }
 
   return (
-    <div className="min-h-screen relative">
-      <SpaceBackground />
+    <div className="min-h-screen relative flex items-start justify-center p-6">
+      <div ref={containerRef} className="relative w-full max-w-6xl rounded-xl p-[2px]" style={{ background: 'linear-gradient(90deg,#7c3aed,#8b5cf6)' }}>
+        {/* Space dots inside this container */}
+        <SpaceBackground containerRef={containerRef} />
+      
       
       {/* Rocket Animation */}
       <div className="fixed inset-0 pointer-events-none z-20">
