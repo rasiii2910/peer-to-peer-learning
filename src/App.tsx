@@ -135,7 +135,7 @@ export default function App() {
                   </div>
 
                   <main className="col-span-1 md:col-span-3 p-6 md:p-10 max-h-[calc(100vh-4rem)] overflow-auto hide-scrollbar">
-                    <ReadProfilePage readOnly />
+                    <ReadProfilePage noWrapper readOnly />
                   </main>
                 </div>
 
