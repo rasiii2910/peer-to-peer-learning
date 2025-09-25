@@ -13,10 +13,12 @@ import ReadProfilePage from './pages/ReadOnlyProfile';
 import TestsPage from './pages/Tests';
 import ConceptMatch from './pages/ConceptMatch';
 import ConceptMatchResult from './pages/ConceptMatchResult';
+import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
   return (
-    <Routes>
+    <ErrorBoundary>
+      <Routes>
       {/* Auth routes use the AuthLayout */}
       <Route
         path="/signin"
@@ -267,5 +269,6 @@ export default function App() {
 
       <Route path="*" element={<Navigate to="/signin" replace />} />
     </Routes>
+    </ErrorBoundary>
   );
 }
