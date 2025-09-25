@@ -365,12 +365,12 @@ export default function ConceptMatch() {
       <SpaceBackground />
       
       {/* Rocket Animation */}
-      <div className="fixed inset-0 pointer-events-none z-5">
+      <div className="fixed inset-0 pointer-events-none z-20">
         <div className="relative w-full h-full">
-          <div 
+          <div
             className="absolute left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-linear"
-            style={{ 
-              bottom: `${progress * 80 + 10}%`, // Start at 10% from bottom, go to 90%
+            style={{
+              top: `${10 + (1 - progress) * 60}%`, // vertical position driven by progress
               transform: `translateX(-50%) ${progress < 0.1 ? 'rotate(180deg)' : 'rotate(0deg)'}` // Flip when falling
             }}
           >
