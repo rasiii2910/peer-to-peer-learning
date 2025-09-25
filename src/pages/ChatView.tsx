@@ -26,7 +26,7 @@ export default function ChatView() {
   if (!user) return <div>User not found</div>;
 
   return (
-    <div className="flex flex-col h-full min-h-[60vh]">
+    <div className="flex flex-col h-full min-h-[calc(100vh-4rem)]">
       {/* header - clicking left area navigates to profile */}
       <div className="flex items-center justify-between p-3 border-b border-white/5">
         <button onClick={() => navigate(`/profile/view/${user.id}`)} className="flex items-center gap-3 text-left">
