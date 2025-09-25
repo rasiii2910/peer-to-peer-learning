@@ -231,7 +231,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom profile block - fixed */}
-      <div className="relative z-20 border-t border-white/10 p-0">
+      <div className="relative z-20 border-t border-white/10 p-6">
         <div className="flex items-center gap-3 mb-4 w-full">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
             R
