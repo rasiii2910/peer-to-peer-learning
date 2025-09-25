@@ -168,12 +168,10 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
     setProfiles((p) => p.filter((x) => x.id !== id));
   }
 
-  const [bio, setBio] = useState(
-    'I am passionate about Java, Python, and Web Development. I enjoy mentoring juniors and learning collaboratively.'
-  );
+  const [bio, setBio] = useState(initialData?.bio ?? 'I am passionate about Java, Python, and Web Development. I enjoy mentoring juniors and learning collaboratively.');
   const [editingBio, setEditingBio] = useState(false);
 
-  const [skills, setSkills] = useState<Skill[]>([
+  const [skills, setSkills] = useState<Skill[]>(initialData?.skills ?? [
     { id: 's1', name: 'Java', level: 'Advanced' },
     { id: 's2', name: 'React', level: 'Intermediate' },
     { id: 's3', name: 'Python', level: 'Advanced' },
@@ -182,7 +180,7 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
   const [newSkillName, setNewSkillName] = useState('');
   const [newSkillLevel, setNewSkillLevel] = useState<Skill['level']>('Beginner');
 
-  const [feedback, setFeedback] = useState<Feedback[]>([
+  const [feedback, setFeedback] = useState<Feedback[]>(initialData?.feedback ?? [
     { id: 'f1', mentor: 'Prof. Mehta', rating: 5, text: 'Great mentorship and commitment.', date: '2025-08-01' },
     { id: 'f2', mentor: 'Dr. Singh', rating: 4, text: 'Very helpful on project architecture.', date: '2025-07-12' },
   ]);
