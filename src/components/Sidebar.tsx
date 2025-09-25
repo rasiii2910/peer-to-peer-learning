@@ -157,7 +157,7 @@ export default function Sidebar() {
   const { theme, toggle } = useTheme();
 
   return (
-    <aside className="md:col-span-1 relative p-0 overflow-hidden rounded-lg flex flex-col h-screen">
+    <aside className="md:col-span-1 relative p-6 overflow-hidden rounded-lg flex flex-col">
       {/* background & floating squares */}
       <div
         className="absolute inset-0 -z-10 rounded-lg"
@@ -169,7 +169,7 @@ export default function Sidebar() {
       <FloatingSquares />
 
       {/* Top brand block - fixed */}
-      <div className="relative z-20 p-6 border-b border-white/10">
+      <div className="absolute top-0 left-0 right-0 p-6 border-b border-white/10 bg-transparent z-20">
         <div className="text-center">
           <h2 className="brand-title text-3xl font-extrabold text-white">
             SkillSwap
@@ -184,7 +184,7 @@ export default function Sidebar() {
       </div>
 
       {/* Middle scrollable nav */}
-      <nav className="relative z-20 flex-1 flex flex-col gap-2 px-6 py-4 overflow-y-auto">
+      <nav className="flex-1 mt-32 mb-28 flex flex-col gap-2 overflow-y-auto">
         <NavItem
           to="/profile"
           icon={
@@ -230,7 +230,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom profile block - fixed */}
-      <div className="relative z-20 border-t border-white/10 p-6">
+      <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 p-6 bg-transparent z-20">
         <div className="flex items-center gap-3 mb-4 w-full">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-indigo-500 flex items-center justify-center text-white font-bold text-sm">
             R
