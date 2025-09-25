@@ -304,12 +304,14 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
                       )}
                     </div>
 
-                    <label className="absolute bottom-0 right-0 -mr-1 -mb-1 bg-white/10 rounded-full p-1 hover:bg-white/20 cursor-pointer">
-                      <input type="file" accept="image/*" onChange={onAvatarChange} className="hidden" />
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-white">
-                        <path d="M12 2a2 2 0 00-2 2v1H8.5A2.5 2.5 0 006 7.5V9h12V7.5A2.5 2.5 0 0015.5 5H14V4a2 2 0 00-2-2zM6 11v7.5A2.5 2.5 0 008.5 21H15.5A2.5 2.5 0 0018 18.5V11H6z" />
-                      </svg>
-                    </label>
+                    {!readOnly && (
+                      <label className="absolute bottom-0 right-0 -mr-1 -mb-1 bg-white/10 rounded-full p-1 hover:bg-white/20 cursor-pointer">
+                        <input type="file" accept="image/*" onChange={onAvatarChange} className="hidden" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-white">
+                          <path d="M12 2a2 2 0 00-2 2v1H8.5A2.5 2.5 0 006 7.5V9h12V7.5A2.5 2.5 0 0015.5 5H14V4a2 2 0 00-2-2zM6 11v7.5A2.5 2.5 0 008.5 21H15.5A2.5 2.5 0 0018 18.5V11H6z" />
+                        </svg>
+                      </label>
+                    )}
                   </div>
 
                   <div>
