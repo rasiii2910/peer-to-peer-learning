@@ -10,11 +10,13 @@ const conversations = [
 export default function MessagesList() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-[60vh]">
-      <h2 className="text-2xl font-bold">Messages</h2>
-      <p className="text-sm text-neutral-500">Recent conversations</p>
+    <div className="flex flex-col h-full min-h-[60vh]">
+      <div>
+        <h2 className="text-2xl font-bold">Messages</h2>
+        <p className="text-sm text-neutral-500">Recent conversations</p>
+      </div>
 
-      <div className="mt-4">
+      <div className="mt-4 flex-1 overflow-auto hide-scrollbar">
         {conversations.map((c) => (
           <div key={c.id} className="p-3 rounded-lg hover:bg-white/5 transition mb-2">
             <button onClick={() => navigate(`/messages/${c.id}`)} className="w-full text-left flex items-center gap-3">
