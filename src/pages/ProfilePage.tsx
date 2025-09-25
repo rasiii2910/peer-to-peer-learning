@@ -19,7 +19,8 @@ function Stars({ value }: { value: number }) {
 }
 
 // Profiles widget allows adding external profiles (github, hackerrank, codechef, leetcode, portfolio)
-function ProfilesWidget({ profiles, onAdd, onRemove }:{ profiles:{ id: string; key: string; url: string }[]; onAdd:(k:string,u:string)=>void; onRemove:(id:string)=>void }) {
+function ProfilesWidget({ profiles, onAdd, onRemove, readOnly }:{ profiles:{ id: string; key: string; url: string }[]; onAdd:(k:string,u:string)=>void; onRemove:(id:string)=>void; readOnly?: boolean }) {
+  const isReadOnly = !!readOnly;
   const services = [
     { key: 'github', label: 'GitHub', domain: 'github.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.528 2.341 1.087 2.91.832.091-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.942 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.91-1.294 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.338 4.686-4.566 4.935.359.31.679.92.679 1.853 0 1.337-.012 2.417-.012 2.747 0 .268.18.58.688.482A10.012 10.012 0 0022 12c0-5.523-4.477-10-10-10z"/></svg>) },
     { key: 'hackerrank', label: 'HackerRank', domain: 'hackerrank.com', icon: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z"/></svg>) },
