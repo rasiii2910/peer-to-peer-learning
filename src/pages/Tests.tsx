@@ -60,10 +60,7 @@ export default function TestsPage() {
   // navigate using window history if react-router navigate not available in this module context
   function startTest() {
     if (!test) return;
-    // use location navigation to test-specific route
-    window.history.pushState({ language: selectedLang }, '', `/tests/${test.id}`);
-    // dispatch a popstate so the router picks it up in dev preview
-    window.dispatchEvent(new PopStateEvent('popstate'));
+    navigate(`/tests/${test.id}`, { state: { language: selectedLang } });
     close();
   }
 
