@@ -83,8 +83,9 @@ export default function ConceptMatch() {
     setTimeout(() => {
       if (index + 1 >= total) {
         // finish
-        const result = { total, correct: isCorrect ? correctCount + 1 : correctCount, answers: answers.concat({ qid: q.id, chosen, correct: q.correct }) };
-        navigate('/tests/concept-match/result', { state: { ...result, language } });
+        const finalAnswers = answers.concat({ qid: q.id, chosen, correct: q.correct });
+        const result = { total, correct: isCorrect ? correctCount + 1 : correctCount, answers: finalAnswers };
+        navigate('/tests/concept-match/result', { state: { ...result, language, questions } });
       } else {
         setIndex((i) => i + 1);
       }
