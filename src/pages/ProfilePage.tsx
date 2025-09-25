@@ -452,7 +452,7 @@ export default function ProfilePage({ readOnly = false, initialData = undefined 
       </div>
 
       {/* Add Skill Modal */}
-      {showAddSkill && (
+      {showAddSkill && !readOnly && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/50" onClick={() => setShowAddSkill(false)} />
           <div className="relative z-10 w-full max-w-md rounded-lg bg-neutral-50 dark:bg-neutral-900 p-6 text-neutral-900 dark:text-neutral-100">
