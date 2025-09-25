@@ -470,9 +470,10 @@ export default function ConceptMatch() {
         {/* Left column: rocket animation */}
         <div className="w-full md:w-1/2 h-48 md:h-full relative flex items-center justify-center bg-black/10 p-4">
           <div
-            className="transition-all duration-150 ease-linear"
+            className="transition-all duration-150 ease-linear absolute"
             style={{
-              transform: `translateY(${(1 - progress) * 50}%)`,
+              top: `${(1 - progress) * 80}%`,
+              transform: 'translateY(-50%)',
             }}
           >
             <svg width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
