@@ -115,12 +115,32 @@ console.log('Result:', result)`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSubmit = () => {
-    setSubmitted(true);
-    // very small delay to show submission then show result
+  const isCorrect = Number(lineInput) === expectedLineNumberOneBased && cause === 'Logic Error';
+
+  const computeScore = () => {
+    if (!isCorrect) return 0;
+    // base 20 points; subtract per violation
+    const base = 20;
+    const penalty = Math.min(base, violations.length * 5);
+    return Math.max(0, base - penalty);
   };
 
-  const isCorrect = Number(lineInput) === expectedLineNumberOneBased && cause === 'Logic Error';
+  const handleSubmit = () => {
+    // navigate to result page with attempt data
+    const score = computeScore();
+    navigate('/tests/debugging-race/result', {
+      state: {
+        snippet,
+        lines,
+        expectedLine: expectedLineNumberOneBased,
+        userLine: Number(lineInput) || null,
+        cause,
+        violations,
+        score,
+        isCorrect,
+      },
+    });
+  };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-6 relative">
