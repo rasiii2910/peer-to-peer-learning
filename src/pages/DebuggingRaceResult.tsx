@@ -39,7 +39,7 @@ export default function DebuggingRaceResult() {
           </div>
           <div className="text-right">
             <div className="text-xs text-neutral-500">Score</div>
-            <div className="mt-1 text-2xl font-extrabold text-rose-600">{score}</div>
+            <div className={`mt-1 text-2xl font-extrabold ${scoreTextClass}`}>{score}</div>
           </div>
         </div>
 
