@@ -116,7 +116,7 @@ console.log('Result:', result)`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isCorrect = Number(lineInput) === expectedLineNumberOneBased && cause === 'Logic Error';
+  const isCorrect = Number(lineInput) === expectedLineNumberOneBased && cause === correctCause;
 
   const computeScore = () => {
     if (!isCorrect) return 0;
@@ -134,6 +134,8 @@ console.log('Result:', result)`;
         snippet,
         lines,
         expectedLine: expectedLineNumberOneBased,
+        correctLine: expectedLineNumberOneBased,
+        correctCause,
         userLine: Number(lineInput) || null,
         cause,
         violations,
