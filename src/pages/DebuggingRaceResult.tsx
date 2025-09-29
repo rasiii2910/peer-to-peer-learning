@@ -49,6 +49,11 @@ export default function DebuggingRaceResult() {
 
               <div className="mt-3 text-sm text-neutral-600">Violations detected: <span className="font-mono">{violations && violations.length ? violations.join(', ') : 'none'}</span></div>
 
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="text-sm">Correct Line: <span className="font-mono">{correctLine}</span></div>
+                <div className="text-sm">Correct Cause: <span className="font-medium">{correctCause}</span></div>
+              </div>
+
               <div className="mt-4">
                 <div className="text-sm font-medium mb-2">Explanation</div>
                 <div className="text-sm text-neutral-700 dark:text-neutral-300">
