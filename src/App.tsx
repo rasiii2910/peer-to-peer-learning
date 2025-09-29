@@ -14,6 +14,7 @@ import TestsPage from './pages/Tests';
 import ConceptMatch from './pages/ConceptMatch';
 import ConceptMatchResult from './pages/ConceptMatchResult';
 import DebuggingRace, { DebuggingRaceRun } from './pages/DebuggingRace';
+import TestRunner from './pages/TestRunner';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
