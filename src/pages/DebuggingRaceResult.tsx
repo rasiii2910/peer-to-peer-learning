@@ -96,11 +96,11 @@ export default function DebuggingRaceResult() {
           </div>
 
           <div>
-            <div className="rounded-lg p-4 bg-gradient-to-br from-rose-50 to-pink-50 dark:from-neutral-800 dark:to-neutral-900 border">
+            <div className={`rounded-lg p-4 bg-gradient-to-br ${panelGradient} border`}>
               <div className="text-sm font-medium mb-2">Stars earned</div>
               <div className="flex items-center gap-2">
                 {[1,2,3,4,5].map((s) => (
-                  <svg key={s} width="28" height="28" viewBox="0 0 24 24" fill={s <= stars ? '#fb7185' : 'none'} stroke={s <= stars ? '#fb7185' : '#d1d5db'} strokeWidth="1.5" className="rounded-full">
+                  <svg key={s} width="28" height="28" viewBox="0 0 24 24" fill={s <= stars ? starColor : 'none'} stroke={s <= stars ? starColor : '#d1d5db'} strokeWidth="1.5" className="rounded-full">
                     <path d="M12 .587l3.668 7.431L23.4 9.753l-5.4 5.264L19.836 24 12 20.011 4.164 24l1.836-8.983L0.6 9.753l7.732-1.735z" />
                   </svg>
                 ))}
@@ -111,7 +111,11 @@ export default function DebuggingRaceResult() {
 
               <div className="mt-4 flex flex-col gap-2">
                 <button className="px-3 py-2 rounded bg-white text-neutral-900 border" onClick={() => navigate('/tests')}>Back to Tests</button>
-                <button className="px-3 py-2 rounded bg-rose-600 text-white" onClick={() => navigate('/tests/debugging-race')}>Try Again</button>
+                {isCorrect ? (
+                  <button className="px-3 py-2 rounded bg-gradient-to-r from-emerald-500 to-green-600 text-white" onClick={() => navigate('/tests')}>Next</button>
+                ) : (
+                  <button className="px-3 py-2 rounded bg-rose-600 text-white" onClick={() => navigate('/tests/debugging-race')}>Try Again</button>
+                )}
               </div>
             </div>
           </div>
