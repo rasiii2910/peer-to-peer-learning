@@ -11,7 +11,7 @@ export default function DebuggingRaceResult() {
     return null;
   }
 
-  const { snippet, lines, expectedLine, userLine, cause, violations, score, isCorrect } = state;
+  const { snippet, lines, expectedLine, correctLine, correctCause, userLine, cause, violations, score, isCorrect } = state;
 
   const stars = (() => {
     if (score >= 18) return 5;
