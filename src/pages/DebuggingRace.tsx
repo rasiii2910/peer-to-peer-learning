@@ -58,6 +58,7 @@ console.log('Result:', result)`;
 
   // For clarity we'll set the expected 1-based line number
   const expectedLineNumberOneBased = 2; // the missing return is on line 2 (const sum = ... should return sum). We'll expect 2.
+  const correctCause = 'Missing Return';
 
   useEffect(() => {
     // countdown
