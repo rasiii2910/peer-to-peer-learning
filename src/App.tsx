@@ -172,6 +172,10 @@ export default function App() {
             </div>
           }
         />
+
+        {/* Debugging Race routes */}
+        <Route path="/tests/debugging-race" element={<DebuggingRace />} />
+        <Route path="/tests/debugging-race/run" element={<DebuggingRaceRun />} />
      {/*<Route
   path="/tests/:id"
   element={
