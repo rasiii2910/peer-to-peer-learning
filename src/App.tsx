@@ -13,6 +13,7 @@ import ReadProfilePage from './pages/ReadOnlyProfile';
 import TestsPage from './pages/Tests';
 import ConceptMatch from './pages/ConceptMatch';
 import ConceptMatchResult from './pages/ConceptMatchResult';
+import DebuggingRace, { DebuggingRaceRun } from './pages/DebuggingRace';
 import ErrorBoundary from './components/ErrorBoundary';
 
 export default function App() {
