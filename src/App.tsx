@@ -165,7 +165,11 @@ export default function App() {
                 {/* Inner content */}
                 <div className="relative w-full h-full rounded-lg bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
                   <main className="w-full h-full overflow-hidden">
-                    <ConceptMatch />
+                    <div style={{ width: '100%', height: '100%' }}>
+                      <React.Suspense fallback={<div>Loading test...</div>}>
+                        <TestRunner />
+                      </React.Suspense>
+                    </div>
                   </main>
                 </div>
               </div>
