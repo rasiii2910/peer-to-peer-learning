@@ -116,10 +116,10 @@ console.log('Result:', result)`;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const isCorrect = Number(lineInput) === expectedLineNumberOneBased && cause === correctCause;
+  // isCorrect will be computed at submission time to avoid mismatch due to state timing or case differences
 
-  const computeScore = () => {
-    if (!isCorrect) return 0;
+  const computeScore = (isCorrectFlag: boolean) => {
+    if (!isCorrectFlag) return 0;
     // base 20 points; subtract per violation
     const base = 20;
     const penalty = Math.min(base, violations.length * 5);
@@ -127,8 +127,14 @@ console.log('Result:', result)`;
   };
 
   const handleSubmit = () => {
+    const userLineNum = Number(lineInput) || null;
+    const normalizedUserCause = (cause || '').toString().trim().toLowerCase();
+    const normalizedCorrectCause = (correctCause || '').toString().trim().toLowerCase();
+    const isCorrectNow = userLineNum === expectedLineNumberOneBased && normalizedUserCause === normalizedCorrectCause;
+
+    const score = computeScore(isCorrectNow);
+
     // navigate to result page with attempt data
-    const score = computeScore();
     navigate('/tests/debugging-race/result', {
       state: {
         snippet,
@@ -136,11 +142,11 @@ console.log('Result:', result)`;
         expectedLine: expectedLineNumberOneBased,
         correctLine: expectedLineNumberOneBased,
         correctCause,
-        userLine: Number(lineInput) || null,
+        userLine: userLineNum,
         cause,
         violations,
         score,
-        isCorrect,
+        isCorrect: isCorrectNow,
       },
     });
   };
