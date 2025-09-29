@@ -22,9 +22,14 @@ export default function DebuggingRaceResult() {
     return 0;
   })();
 
+  const bgGradient = isCorrect ? 'from-emerald-400 to-green-600' : 'from-rose-500 to-pink-500';
+  const scoreTextClass = isCorrect ? 'text-green-600' : 'text-rose-600';
+  const panelGradient = isCorrect ? 'from-emerald-50 to-green-50 dark:from-neutral-800 dark:to-neutral-900' : 'from-rose-50 to-pink-50 dark:from-neutral-800 dark:to-neutral-900';
+  const starColor = isCorrect ? '#16a34a' : '#fb7185';
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-6 relative">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-rose-500 to-pink-500 opacity-30" />
+      <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${bgGradient} opacity-30`} />
 
       <div className="relative w-full max-w-4xl rounded-xl p-6 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 shadow-xl">
         <div className="flex items-center justify-between mb-6">
